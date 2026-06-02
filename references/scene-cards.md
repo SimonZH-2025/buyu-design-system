@@ -17,9 +17,10 @@
 | 尺寸 | 1080×1440px（3:4） |
 | 最多张数 | 18张（小红书上限） |
 | 文件形式 | 所有卡片放一个HTML文件，每张一个 `div.card` |
-| 导出方式 | 顶部固定"一键导出PNG"按钮（html2canvas本地文件 + JSZip打包为zip一次性下载） |
+| 导出方式 | 顶部固定"一键导出PNG"按钮（html2canvas + JSZip 打包为 zip 一次性下载） |
 | 浏览器预览 | `transform: scale(0.45); transform-origin: top center; margin-bottom: -792px` |
-| 本地服务器 | 用 `python3 -m http.server 8765` 打开，确保html2canvas加载正常 |
+| 头像必须 base64 内嵌 | **不要用 `<img src="avatar.png">` 外链**——`file://` 直接打开时外链图会让画布被跨域污染、那张卡导不出（少图）。头像一律转成 `data:image/png;base64,...` 内嵌（模板 `template-cards.html` 已内置）。这样双击 HTML 也能导全，不依赖本地服务器 |
+| html2canvas / JSZip | 用 CDN 引入，避免本地文件缺失 |
 
 ---
 
