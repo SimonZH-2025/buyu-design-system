@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><!-- 活动标题 --></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM Serif Display:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* === CSS变量 === */
+    :root {
+      --blue: #2F6FB0;
+      --blue-deep: #245B91;
+      --yellow: #F2C53D;
+      --yellow-soft: #FBE6A8;
+      --red: #D8453B;
+      --cream: #FFF8EF;
+      --cream-dark: #F5E9D6;
+      --ink: #2A2A33;
+      --ink-light: #6A6A76;
+      --ink-faint: #9A9AA6;
+      --dark-panel: #151821;
+      /* 合作品牌色（按需启用） */
+      /* --partner: #F1752D; */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--cream);
+    }
+
+    ::selection {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* === HERO 全屏 === */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--ink-light);
+      max-width: 600px;
+    }
+
+    .hero .label-caps {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+      color: var(--ink-faint);
+      margin-bottom: 1rem;
+    }
+
+    /* === 三栏Section === */
+    .section { padding: clamp(80px, 12vh, 160px) 0; }
+    .section--alt { background: var(--cream-dark); }
+
+    .section-header {
+      margin-bottom: clamp(40px, 6vw, 80px);
+    }
+
+    .section-number {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--blue);
+      opacity: 0.3;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.5vw, 32px);
+    }
+
+    .chair-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: clamp(24px, 3vw, 36px);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+    .chair-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .chair-card:nth-child(1)::before { background: var(--blue); }
+    .chair-card:nth-child(2)::before { background: var(--yellow); }
+    .chair-card:nth-child(3)::before { background: var(--red); }
+
+    /* === 深色面板 === */
+    .dark-section {
+      background: var(--dark-panel);
+      color: #e2e8f0;
+      padding: clamp(80px, 12vh, 160px) 0;
+    }
+
+    .dark-section .quote-text {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 700;
+      line-height: 1.8;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .dark-section .quote-text em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    /* === Pull Quote === */
+    .viral-pullquote {
+      padding: 36px 40px;
+      background: var(--cream);
+      border-radius: 16px;
+      border: 2px solid var(--yellow);
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .viral-pullquote::before {
+      content: '"';
+      font-family: 'DM Serif Display', serif;
+      font-size: 5rem;
+      color: var(--yellow);
+      position: absolute;
+      top: -10px; left: 20px;
+      opacity: 0.5;
+      line-height: 1;
+    }
+    .viral-pullquote p {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    /* === CTA === */
+    .cta-section {
+      text-align: center;
+      padding: clamp(80px, 12vh, 160px) 2rem;
+    }
+    .cta-section h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      font-size: 1rem;
+      color: var(--ink-light);
+      margin-bottom: 2rem;
+    }
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 36px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(43,127,216,0.3);
+    }
+
+    /* === Scroll Reveal === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* === 响应式 === */
+    @media (max-width: 900px) {
+      .hero { min-height: auto; padding: 4rem 1.5rem; }
+      .three-col { grid-template-columns: 1fr; }
+      .cta-button { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HERO 全屏 ====== -->
+  <section class="hero">
+    <span class="label-caps"><!-- 活动类型/日期 --></span>
+    <h1><!-- 活动主标题 --></h1>
+    <p><!-- 活动副标题/一句话描述 --></p>
+  </section>
+
+  <!-- ====== 三栏亮点 ====== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">01</span>
+        <h2 class="section-title"><!-- 亮点/嘉宾/核心价值 --></h2>
+      </div>
+      <div class="three-col">
+        <div class="chair-card reveal reveal-d1">
+          <!-- 卡片1内容 -->
+        </div>
+        <div class="chair-card reveal reveal-d2">
+          <!-- 卡片2内容 -->
+        </div>
+        <div class="chair-card reveal reveal-d3">
+          <!-- 卡片3内容 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== 深色面板（金句/核心观点） ====== -->
+  <section class="dark-section">
+    <div class="container reveal">
+      <p class="quote-text"><!-- 引用的 <em>重点词</em> 内容 --></p>
+    </div>
+  </section>
+
+  <!-- ====== Pull Quote ====== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="viral-pullquote reveal">
+        <p><!-- 核心金句 --></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA行动区 ====== -->
+  <section class="cta-section">
+    <h2 class="reveal"><!-- 行动号召标题 --></h2>
+    <p class="reveal reveal-d1"><!-- 行动描述 --></p>
+    <a href="#" class="cta-button reveal reveal-d2"><!-- 按钮文案 --></a>
+  </section>
+
+  <!-- ====== Scroll Reveal JS ====== -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

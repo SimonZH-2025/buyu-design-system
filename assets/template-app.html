@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><!-- App标题 --></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* === CSS变量（简化版） === */
+    :root {
+      --blue: #2F6FB0;
+      --yellow: #F2C53D;
+      --red: #D8453B;
+      --cream: #FFF8EF;
+      --ink: #2A2A33;
+      --ink-light: #6A6A76;
+      --ink-faint: #9A9AA6;
+      --card-bg: #fff;
+      --border: rgba(26,26,26,.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--cream);
+    }
+
+    ::selection {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    /* === Fixed Header === */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 56px;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+
+    .app-header h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* === Tab栏 === */
+    .tab-bar {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      border-bottom: 2px solid #eee;
+      padding: 0 1.5rem;
+      background: var(--cream);
+    }
+
+    .tab {
+      padding: 12px 20px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      border-bottom-color: var(--blue);
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    .tab:hover:not(.active) {
+      color: var(--ink);
+    }
+
+    /* === 内容区 === */
+    .app-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* === 卡片网格 === */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+
+    .app-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    }
+
+    .app-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .app-card p {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+    }
+
+    .card-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      background: rgba(43,127,216,0.1);
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+
+    /* === Tab内容切换 === */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* === Modal === */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 560px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* === 输入框 === */
+    .app-input {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      transition: border-color .2s;
+      background: var(--card-bg);
+      width: 100%;
+    }
+
+    .app-input:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(43,127,216,0.1);
+    }
+
+    /* === 响应式 === */
+    @media (max-width: 600px) {
+      .app-content { padding: 1.5rem 1rem; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== Fixed Header ====== -->
+  <header class="app-header">
+    <h1><!-- App名称 --></h1>
+    <div class="header-actions">
+      <!-- 操作按钮 -->
+    </div>
+  </header>
+
+  <!-- ====== Tab栏 ====== -->
+  <div class="tab-bar">
+    <button class="tab active" data-tab="tab1"><!-- 标签1 --></button>
+    <button class="tab" data-tab="tab2"><!-- 标签2 --></button>
+    <button class="tab" data-tab="tab3"><!-- 标签3 --></button>
+  </div>
+
+  <!-- ====== 内容区 ====== -->
+  <main class="app-content">
+
+    <!-- Tab 1 内容 -->
+    <div class="tab-content active" id="tab1">
+      <div class="card-grid">
+        <div class="app-card">
+          <span class="card-badge"><!-- 分类 --></span>
+          <h3><!-- 卡片标题 --></h3>
+          <p><!-- 卡片描述 --></p>
+        </div>
+        <!-- 更多卡片 -->
+      </div>
+    </div>
+
+    <!-- Tab 2 内容 -->
+    <div class="tab-content" id="tab2">
+      <!-- 另一组内容 -->
+    </div>
+
+    <!-- Tab 3 内容 -->
+    <div class="tab-content" id="tab3">
+      <!-- 另一组内容 -->
+    </div>
+
+  </main>
+
+  <!-- ====== Modal ====== -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <!-- Modal内容 -->
+    </div>
+  </div>
+
+  <!-- ====== JS ====== -->
+  <script>
+    // Tab切换
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Modal
+    function openModal() {
+      document.getElementById('modal').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

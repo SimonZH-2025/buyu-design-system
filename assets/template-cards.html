@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图文卡片模板 - 布鱼</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="html2canvas.min.js" onerror="console.error('html2canvas failed to load')"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<!-- =========================================================================
+  buyu 图文卡片种子模板（3:4 · 1080×1440）
+
+  ★ 吃满画布的核心机制（解决"下方大片空白"）：
+    - 每张 .card 是 flex 纵向容器。
+    - 内容页(.p-light/.p-dark) 默认 justify-content: space-between，
+      把【三个真实内容块】顶/中/底均匀撑满整页：
+        ① 页眉块   = kicker + 标题（+ 页码水印）
+        ② 主体块   = 账本行 / 代码面板 / 对比卡 / 大数字（页面主角）
+        ③ 底部块   = 小结 / 金句 / caption
+    - ❌ 禁止用空 <div> 占位撑版；不够满就【加大行高 / 换大字号 / 加内容 / 换版式】。
+    - 主体块至少占画布 50%；整页填充 ≥75%。
+
+  ★ 字号已按"大字天然吃满"标准设定，别再调小。
+  ★ 标题高亮 .hl/.hl-r 已内置 line-height 1.4 + 极小上下 padding + box-decoration-break，
+    不会再出现"高亮块过大顶到邻行"。
+========================================================================= -->
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root{
+  --yellow:#F2C53D; --yellow-soft:#FBE6A8; --blue:#2F6FB0; --blue-deep:#245B91;
+  --red:#D8453B; --cream:#FFF8EF; --cream-dark:#F5E9D6; --ink:#2A2A33;
+  --ink-light:#6A6A76; --ink-faint:#9A9AA6; --dark:#241F1C;
+}
+body{ background:#cfc7b8; font-family:'Noto Sans SC',-apple-system,sans-serif; color:var(--ink); padding:40px 20px; }
+
+/* 导出栏 */
+.export-bar{ position:fixed; top:0; left:0; right:0; z-index:9999; background:var(--ink); padding:14px 24px; display:flex; align-items:center; justify-content:center; gap:16px; }
+.export-bar button{ background:var(--red); color:#fff; border:none; padding:10px 28px; border-radius:8px; font-size:16px; font-weight:700; cursor:pointer; font-family:'Noto Sans SC',sans-serif; }
+.export-bar .hint{ color:#aaa; font-size:13px; }
+
+.cards-container{ display:flex; flex-direction:column; align-items:center; gap:40px; margin-top:80px; }
+
+/* ===== 卡片基座：flex 纵向，是吃满画布的关键 ===== */
+.card{
+  width:1080px; height:1440px; position:relative; overflow:hidden;
+  transform:scale(0.45); transform-origin:top center; margin-bottom:-792px;
+  border-radius:4px; box-shadow:0 8px 40px rgba(0,0,0,.18);
+  display:flex; flex-direction:column;        /* ← 纵向 flex */
+  padding:80px;
+}
+.p-light{ background:var(--cream); justify-content:space-between; }   /* ← 三块撑满 */
+.p-light.alt{ background:var(--cream-dark); }
+.p-dark{ background:var(--dark); justify-content:space-between; }
+.p-cover{ background:var(--cream); justify-content:space-between; }
+.p-end{ background:var(--cream); justify-content:center; align-items:center; text-align:center; }
+
+/* ★ 主体块：flex:1 吃掉剩余高度，把页脚顶到底，杜绝下方空白。
+   里面放真实内容(账本/代码/卡片)，绝非空占位 div。 */
+.grow{ flex:1; display:flex; flex-direction:column; justify-content:center; min-height:0; }
+
+/* ===== 通用零件 ===== */
+.page-num{ font-family:'DM Serif Display',serif; font-style:italic; font-size:150px; position:absolute; top:34px; right:74px; line-height:1; pointer-events:none; }
+.kicker{ font-family:'DM Serif Display',serif; font-style:italic; font-size:34px; }
+.h2{ font-family:'Noto Serif SC',serif; font-weight:900; font-size:64px; line-height:1.4; }   /* 带高亮也安全 */
+.h2.rule::after{ content:''; display:block; width:90px; height:8px; background:var(--yellow); margin-top:24px; border-radius:4px; }
+.body{ font-size:40px; line-height:1.7; }
+/* 标题高亮：line-height 已由 .h2(1.4) 保证；上下 padding 极小，避免顶到邻行 */
+.hl{ background:var(--yellow); padding:0.02em 0.26em; border-radius:6px; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.hl-r{ background:var(--red); color:#fff; padding:0.02em 0.26em; border-radius:6px; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.mark{ background:var(--yellow); padding:0.02em 0.22em; border-radius:4px; font-weight:500; }
+.red{ color:var(--red); } .blue{ color:var(--blue); font-weight:700; }
+.hairline{ height:1px; background:#2A2A3322; border:0; }
+
+/* 浅色页配色 */
+.p-light .page-num{ color:var(--blue); opacity:.12; }
+.p-light .kicker{ color:var(--red); }
+.p-light .h2{ color:var(--ink); }
+.p-light .body{ color:#3a3a42; }
+
+/* 深色页配色 */
+.p-dark .page-num{ color:var(--yellow); opacity:.16; }
+.p-dark .kicker{ color:var(--yellow); }
+.p-dark .h2{ color:var(--cream); }
+.p-dark .body{ color:#d8d2c8; }
+
+/* 账本行（主体块常用，行高大，天然吃满） */
+.ledger{ display:flex; flex-direction:column; }
+.lrow{ display:grid; grid-template-columns:120px 1fr; gap:30px; align-items:start; padding:36px 0; border-bottom:1px solid #2A2A3322; }
+.lrow:last-child{ border-bottom:0; }
+.lrow .ln{ font-family:'DM Serif Display',serif; font-style:italic; font-size:78px; color:var(--blue); line-height:.9; }
+.lrow .lt{ font-size:38px; font-weight:700; margin-bottom:8px; }
+.lrow .ld{ font-size:30px; color:var(--ink-light); line-height:1.55; }
+.lrow .ld code,.codeword{ font-family:'Fira Code',monospace; background:var(--yellow-soft); padding:2px 10px; border-radius:6px; font-size:26px; color:var(--ink); }
+
+/* 卡片块 */
+.vcard{ background:#fff; border-radius:18px; padding:34px 38px; box-shadow:0 8px 24px rgba(42,42,51,.07); }
+.vcard .vt{ font-size:36px; font-weight:700; margin-bottom:10px; }
+.vcard .vd{ font-size:30px; color:var(--ink-light); line-height:1.5; }
+
+/* 深色代码面板 */
+.codepanel{ background:#1a1613; border-radius:18px; padding:40px 44px; font-family:'Fira Code',monospace; }
+.codepanel .bar{ display:flex; gap:12px; margin-bottom:24px; }
+.codepanel .bar i{ width:18px; height:18px; border-radius:50%; display:inline-block; }
+.codepanel .line{ font-size:30px; color:#e8e2d8; line-height:1.95; }
+.codepanel .line .c{ color:var(--yellow); } .codepanel .line .dim{ color:#7a7269; }
+
+/* 封面 */
+.p-cover .tag{ font-size:30px; font-weight:700; color:var(--ink); background:var(--yellow); display:inline-block; padding:10px 26px; border-radius:8px; width:fit-content; letter-spacing:1px; }
+.p-cover h1{ font-family:'Noto Serif SC',serif; font-weight:900; font-size:92px; line-height:1.5; color:var(--ink); }
+.p-cover .subtitle{ font-family:'PingFang SC','Noto Sans SC',sans-serif; font-weight:300; font-size:38px; color:var(--blue); margin-top:24px; letter-spacing:.02em; }
+.p-cover .toc{ display:flex; flex-direction:column; }
+.p-cover .toc .row{ display:flex; align-items:baseline; gap:20px; padding:17px 0; border-bottom:1px solid #2A2A3322; }
+.p-cover .toc .no{ font-family:'DM Serif Display',serif; font-style:italic; font-size:30px; color:var(--blue); width:48px; flex:none; }
+.p-cover .toc .tt{ font-family:'Noto Serif SC',serif; font-weight:700; font-size:30px; }
+.p-cover .author-row{ display:flex; align-items:center; gap:24px; }
+.p-cover .avatar{ width:90px; height:90px; border-radius:50%; object-fit:cover; border:4px solid var(--yellow); }
+.p-cover .author-name{ font-size:36px; font-weight:700; }
+.p-cover .author-desc{ font-size:24px; color:var(--ink-light); margin-top:4px; }
+
+/* 尾页 */
+.p-end .qm{ font-family:'DM Serif Display',serif; font-style:italic; font-size:210px; color:var(--yellow); opacity:.5; line-height:.5; margin-bottom:24px; }
+.p-end .quote{ font-family:'Noto Serif SC',serif; font-weight:900; font-size:60px; line-height:1.5; margin-bottom:40px; max-width:880px; }
+.p-end .avatar{ width:104px; height:104px; border-radius:50%; object-fit:cover; border:4px solid var(--yellow); margin-bottom:20px; }
+.p-end .author-name{ font-size:40px; font-weight:700; margin-bottom:10px; }
+.p-end .cta{ font-size:30px; color:var(--blue); font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="export-bar">
+  <button onclick="exportAll()">📥 一键导出PNG</button>
+  <span class="hint">每张导出 1080×1440 PNG（建议用 localhost 打开）</span>
+</div>
+
+<div class="cards-container">
+
+<!-- ============ 封面：三块 = 标签 / 标题 / (目录+署名) ============ -->
+<div class="card p-cover" data-card="1">
+  <span class="tag">分类标签</span>
+  <div>
+    <h1>主标题<br>带<span class="hl-r">关键词</span></h1>
+    <p class="subtitle">副标题用苹方细体，不用英文衬线套中文</p>
+  </div>
+  <div>
+    <div class="toc" style="margin-bottom:56px;">
+      <div class="row"><span class="no">01</span><span class="tt">目录项一</span></div>
+      <div class="row"><span class="no">02</span><span class="tt">目录项二</span></div>
+    </div>
+    <div class="author-row">
+      <img class="avatar" src="avatar.png" alt="avatar">
+      <div><div class="author-name">布鱼</div><div class="author-desc">一句话介绍</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 浅色内容页：三块 = 页眉 / 主体 / 底部小结 ============ -->
+<div class="card p-light" data-card="2">
+  <span class="page-num">01</span>
+  <div>  <!-- ① 页眉块 -->
+    <div class="kicker">小节 · KICKER</div>
+    <h2 class="h2 rule" style="margin-top:14px;">页面<span class="hl">标题</span></h2>
+  </div>
+  <div class="ledger">  <!-- ② 主体块（账本行/卡片/代码，占主要高度） -->
+    <div class="lrow"><div class="ln">01</div><div><div class="lt">要点标题</div><div class="ld">说明文字，行高大一点，吃满空间。</div></div></div>
+    <div class="lrow"><div class="ln">02</div><div><div class="lt">要点标题</div><div class="ld">说明文字 <code>代码词</code>。</div></div></div>
+  </div>
+  <p class="body">③ 底部小结：一句收束 / 金句 / caption。</p>
+</div>
+
+<!-- ============ 深色页：代码 / 重点强调 ============ -->
+<div class="card p-dark" data-card="3">
+  <span class="page-num">02</span>
+  <div>
+    <div class="kicker">小节 · CODE</div>
+    <h2 class="h2" style="margin-top:14px;">深色<span style="color:var(--yellow)">代码页</span></h2>
+  </div>
+  <div class="codepanel">
+    <div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i></div>
+    <div class="line"><span class="dim"># 注释</span></div>
+    <div class="line"><span class="c">key</span>: value</div>
+  </div>
+  <p class="body">③ 底部小结。</p>
+</div>
+
+<!-- ============ 尾页：居中金句 ============ -->
+<div class="card p-end" data-card="last">
+  <div class="qm">"</div>
+  <p class="quote">核心金句，<span class="hl">关键词</span>高亮。</p>
+  <img class="avatar" src="avatar.png" alt="avatar">
+  <p class="author-name">布鱼</p>
+  <p class="cta">关注 布鱼</p>
+</div>
+
+</div><!-- cards-container -->
+
+<script>
+async function exportAll(){
+  if(typeof html2canvas==='undefined'){ alert('⏳ html2canvas 正在加载，请稍等几秒后重试。'); return; }
+  if(typeof JSZip==='undefined'){ alert('JSZip 加载失败，请刷新重试。'); return; }
+  const cards=document.querySelectorAll('.card');
+  const btn=document.querySelector('.export-bar button');
+  btn.textContent='⏳ 导出中... 0/'+cards.length; btn.disabled=true;
+  const zip=new JSZip(); const folder=zip.folder('cards-export');
+  for(let i=0;i<cards.length;i++){
+    const card=cards[i];
+    const sj=card.style.justifyContent, sa=card.style.alignItems;
+    card.style.transform='none'; card.style.marginBottom='0'; card.style.borderRadius='0'; card.style.boxShadow='none';
+    await new Promise(r=>setTimeout(r,150));
+    try{
+      const canvas=await html2canvas(card,{width:1080,height:1440,scale:1,useCORS:true,allowTaint:true,backgroundColor:null,logging:false});
+      const base64=canvas.toDataURL('image/png').split(',')[1];
+      folder.file(`card-${String(i+1).padStart(2,'0')}.png`,base64,{base64:true});
+      btn.textContent=`⏳ 导出中... ${i+1}/${cards.length}`;
+    }catch(e){ console.error('Export error on card '+(i+1),e); }
+    finally{ card.style.transform='scale(0.45)'; card.style.marginBottom='-792px'; card.style.borderRadius='4px'; card.style.boxShadow='0 8px 40px rgba(0,0,0,.18)'; }
+  }
+  btn.textContent='⏳ 打包中...';
+  const blob=await zip.generateAsync({type:'blob'});
+  const link=document.createElement('a'); link.download='cards-export.zip'; link.href=URL.createObjectURL(blob);
+  document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(link.href);
+  btn.textContent='✅ 导出完成';
+  setTimeout(()=>{ btn.textContent='📥 一键导出PNG'; btn.disabled=false; },2000);
+}
+</script>
+
+</body>
+</html>

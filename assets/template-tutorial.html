@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><!-- 页面标题 --></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM Serif Display:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Caveat:wght@400;700&family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+  <style>
+    /* === CSS变量 === */
+    :root {
+      --blue: #2F6FB0;
+      --blue-deep: #245B91;
+      --yellow: #F2C53D;
+      --yellow-soft: #FBE6A8;
+      --red: #D8453B;
+      --cream: #FFF8EF;
+      --cream-dark: #F5E9D6;
+      --ink: #2A2A33;
+      --ink-light: #6A6A76;
+      --ink-faint: #9A9AA6;
+      --dark-panel: #151821;
+    }
+
+    /* === Reset === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink);
+      background: var(--cream);
+    }
+
+    ::selection {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* === Hero Section === */
+    /* 替换为适合的Hero布局（参见layouts.md） */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 0.6fr;
+      align-items: center;
+      gap: 48px;
+      padding: 6rem 2rem 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      margin-top: 1.5rem;
+      max-width: 540px;
+    }
+
+    .label-caps {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+      color: var(--ink-faint);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    /* === Content Sections === */
+    /* 每个section使用不同布局（参见layouts.md） */
+    .section {
+      padding: clamp(80px, 12vh, 160px) 0;
+    }
+
+    .section--alt {
+      background: var(--cream-dark);
+    }
+
+    .section-header {
+      margin-bottom: clamp(40px, 6vw, 80px);
+    }
+
+    .section-number {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--blue);
+      opacity: 0.3;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+    }
+
+    /* === 卡片 === */
+    .feature-card {
+      background: var(--cream-dark);
+      border-radius: 16px;
+      padding: clamp(24px, 3vw, 36px);
+      border-left: 4px solid var(--yellow);
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover { transform: translateY(-4px); }
+
+    /* === Scroll Reveal === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* === 响应式 === */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 4rem 1.5rem 3rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== HERO ====== -->
+  <!-- 从layouts.md选择合适的Hero布局 -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="label-caps"><!-- 分类标签 --></span>
+      <h1><!-- 主标题 --></h1>
+      <p><!-- 副标题/描述 --></p>
+    </div>
+    <div class="hero-visual">
+      <!-- 视觉元素：图片/装饰/IP形象 -->
+    </div>
+  </section>
+
+  <!-- ====== SECTION 1 ====== -->
+  <!-- 选择不同于Hero的布局（如Sticky侧栏/Step流程/卡片网格） -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">01</span>
+        <h2 class="section-title"><!-- Section标题 --></h2>
+      </div>
+      <div class="reveal reveal-d1">
+        <!-- Section内容 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 2 ====== -->
+  <!-- 选择另一种不同布局 -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-number">02</span>
+        <h2 class="section-title"><!-- Section标题 --></h2>
+      </div>
+      <div class="reveal reveal-d1">
+        <!-- Section内容 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION 3 ====== -->
+  <!-- 可选：深色面板打破节奏 -->
+  <section class="section" style="background: var(--dark-panel); color: #e2e8f0;">
+    <div class="container">
+      <div class="reveal">
+        <!-- 重点内容/引用 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="section" style="padding: clamp(40px, 6vh, 80px) 0; text-align: center;">
+    <div class="container">
+      <p style="font-size: 0.85rem; color: var(--ink-faint);"><!-- 底部信息 --></p>
+    </div>
+  </footer>
+
+  <!-- ====== Scroll Reveal JS ====== -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
