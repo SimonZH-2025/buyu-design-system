@@ -36,7 +36,7 @@
 | 英文装饰/标题 | `DM Serif Display` (italic) | 现代利落的高对比衬线，做装饰/栏目名/引言 |
 | 中文正文 | `Noto Sans SC` + 系统栈 | 跨平台无衬线 |
 | 中文正文系统栈 | `-apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif` | 本地渲染最快 |
-| 英文手写/轻松 | `Caveat` | 手绘感、标注、注释（按需使用） |
+| 英文手写/轻松 | `Caveat` | **默认不用**；仅在确需手写感时少量点缀。英文小标签优先用正体（Noto Sans 大写 + 字间距），别默认套手写体 |
 | 英文等宽/终端 | `Fira Code` | 技术/终端场景专用（按需使用） |
 
 ### 字体引入（Google Fonts）
