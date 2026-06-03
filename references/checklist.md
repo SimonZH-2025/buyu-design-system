@@ -9,7 +9,7 @@
 任何一条不过就要改：
 
 - [ ] 品牌三色使用正确（黄60/红30/蓝10比例）
-- [ ] 没有使用禁忌清单里的任何元素（蓝紫渐变/glassmorphism/bounce动画/neon/居中病）
+- [ ] 没有使用禁忌清单里的任何元素（蓝紫渐变/glassmorphism/bounce动画/neon/居中病/**顶部底部彩色渐变条**）
 - [ ] 背景使用暖底（#FFF8EF或#F5E9D6），非纯黑纯白
 - [ ] 字体用了推荐字体池里的（DM Serif Display/Noto Serif SC/Caveat等）
 - [ ] 标题衬线+正文无衬线混搭

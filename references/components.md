@@ -1726,9 +1726,9 @@ Caveat字体标题 + 虚线边框，适合轻松/教程类内容。
 
 ---
 
-## 13. 技能卡片（顶部渐变条Hover）
+## 13. 技能卡片（顶部色条Hover）
 
-Hover时出现品牌渐变顶条。
+Hover时出现品牌色顶条（**单色，不用渐变**）。
 
 ```html
 <div class="skill-card">
@@ -1752,7 +1752,7 @@ Hover时出现品牌渐变顶条。
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--yellow, #F2C53D), var(--blue, #2F6FB0));
+  background: var(--red, #D8453B);
   opacity: 0;
   transition: opacity .3s;
 }

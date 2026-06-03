@@ -89,7 +89,7 @@
 | 字体 | Inter/Roboto/Arial等overused字体（除非明确是终端风格辅助字体）、monospace充当"技术感" |
 | 布局 | 所有section居中、千篇一律卡片网格、cards嵌套cards |
 | 动效 | bounce/elastic、animate width/height、无限循环动画 |
-| 装饰 | glassmorphism、圆角矩形+阴影千篇一律、渐变文字、AI光效 |
+| 装饰 | glassmorphism、圆角矩形+阴影千篇一律、渐变文字、AI光效、**顶部/底部彩色渐变条**（esther 遗留的 deco-top/deco-bottom 三色条）——分隔只用纯色块或单色发丝线 |
 | 整体 | 看起来像AI生成的通用模板、generic Landing Page模板感 |
 | 排版 | 行间距/字间距必须肉眼检查，不允许出现过松或过紧的异常节奏 |
 | 图片 | AI生成的stock photo风、过度滤镜、无意义装饰图 |
