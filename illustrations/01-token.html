@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Token 分词图 · Neo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=DM+Serif+Display:ital@0;1&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow:      #F2C53D;
+    --red:         #D8453B;
+    --blue:        #2F6FB0;
+    --cream:       #FFF8EF;
+    --ink:         #2A2A33;
+    --ink-mid:     #4A4A55;
+    --ink-light:   #8A8A99;
+    --yellow-soft: #FEF7DC;
+    --red-soft:    #FDECEA;
+    --blue-soft:   #E6EEF8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1280px;
+    height: 720px;
+    background: var(--cream);
+    font-family: 'Noto Sans SC', sans-serif;
+    color: var(--ink);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 网格底纹 */
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(47,111,176,.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(47,111,176,.055) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  /* 左上角装饰笔触 */
+  .deco-corner {
+    position: absolute;
+    top: 36px;
+    left: 40px;
+  }
+  .deco-corner span {
+    display: block;
+    height: 3px;
+    background: var(--red);
+    border-radius: 2px;
+  }
+  .deco-corner span:first-child  { width: 48px; margin-bottom: 6px; }
+  .deco-corner span:last-child   { width: 24px; }
+
+  /* Logo */
+  .logo {
+    position: absolute;
+    top: 30px;
+    right: 44px;
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 15px;
+    color: var(--ink);
+    letter-spacing: .15em;
+  }
+  .logo::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: var(--yellow);
+    margin-top: 4px;
+  }
+
+  /* 主容器 */
+  .stage {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 72px 80px 68px;
+  }
+
+  /* 顶部概念标签 */
+  .concept-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .concept-tag .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+  .concept-tag .label {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--blue);
+    letter-spacing: .12em;
+  }
+
+  /* 主标题 */
+  .main-title {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 38px;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .main-title em {
+    font-style: normal;
+    color: var(--red);
+    position: relative;
+  }
+  .main-title em::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 2px;
+    height: 3px;
+    background: var(--yellow);
+    border-radius: 2px;
+    opacity: .7;
+  }
+
+  /* 副标题 */
+  .sub-title {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-light);
+    margin-bottom: 32px;
+    letter-spacing: .05em;
+  }
+
+  /* 原句 → 箭头行 */
+  .source-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    background: white;
+    border: 1.5px solid rgba(42,42,51,.15);
+    border-radius: 48px;
+    padding: 12px 28px;
+    box-shadow: 0 2px 0 rgba(42,42,51,.08);
+  }
+  .source-text {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink-mid);
+    letter-spacing: .04em;
+  }
+  .arrow-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: .05em;
+    white-space: nowrap;
+  }
+  .arrow-badge .arr { font-size: 15px; }
+
+  /* Token 卡片行 */
+  .token-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-end;
+    margin-bottom: 28px;
+  }
+
+  .token {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .token-card {
+    background: white;
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    padding: 18px 18px 14px;
+    min-width: 82px;
+    text-align: center;
+    box-shadow: 3px 3px 0 var(--ink);
+    position: relative;
+    transition: transform .15s;
+  }
+  .token-card:hover { transform: translateY(-2px); }
+
+  .token-char {
+    font-family: 'Noto Serif SC', serif;
+    font-weight: 900;
+    font-size: 30px;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .token-id {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink-light);
+    letter-spacing: .02em;
+  }
+
+  /* 颜色变体 */
+  .token.yellow .token-card {
+    background: var(--yellow-soft);
+    border-color: var(--yellow);
+    box-shadow: 3px 3px 0 var(--yellow);
+  }
+  .token.yellow .token-id { color: #9A7C10; }
+
+  .token.red .token-card {
+    background: var(--red-soft);
+    border-color: var(--red);
+    box-shadow: 3px 3px 0 var(--red);
+  }
+  .token.red .token-id { color: #9A2520; }
+
+  .token.blue .token-card {
+    background: var(--blue-soft);
+    border-color: var(--blue);
+    box-shadow: 3px 3px 0 var(--blue);
+  }
+  .token.blue .token-id { color: #1E4A78; }
+
+  /* 标点卡片窄一点 */
+  .token.punct .token-card {
+    min-width: 54px;
+    padding: 18px 10px 14px;
+  }
+  .token.punct .token-char { font-size: 26px; color: var(--ink-light); }
+
+  /* 底部注释 */
+  .footnote {
+    font-size: 13px;
+    color: var(--ink-light);
+    letter-spacing: .04em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footnote::before, .footnote::after {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--ink-light);
+    opacity: .4;
+  }
+
+  /* 底部字幕条 */
+  .caption-bar {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: #FFF8EF;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 10px 32px;
+    border-radius: 6px;
+    letter-spacing: .06em;
+    white-space: nowrap;
+  }
+
+  /* 右下角章节序号 */
+  .chapter-num {
+    position: absolute;
+    bottom: 34px;
+    right: 44px;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-light);
+  }
+</style>
+</head>
+<body>
+
+  <div class="deco-corner">
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="logo">Neo</div>
+
+  <div class="stage">
+
+    <div class="concept-tag">
+      <div class="dot"></div>
+      <span class="label">Large Language Model · 大语言模型</span>
+      <div class="dot"></div>
+    </div>
+
+    <h1 class="main-title">你说的一句话，它是这样<em>看见</em>的</h1>
+    <p class="sub-title">Tokenization — 把语言切成最小单位</p>
+
+    <div class="source-row">
+      <span class="source-text">「周末去杭州，有什么推荐？」</span>
+      <div class="arrow-badge">
+        <span class="arr">↓</span>
+        <span>拆解为 Token</span>
+      </div>
+    </div>
+
+    <div class="token-row">
+      <div class="token yellow">
+        <div class="token-card">
+          <div class="token-char">周末</div>
+        </div>
+        <div class="token-id">3847</div>
+      </div>
+
+      <div class="token">
+        <div class="token-card">
+          <div class="token-char">去</div>
+        </div>
+        <div class="token-id">892</div>
+      </div>
+
+      <div class="token blue">
+        <div class="token-card">
+          <div class="token-char">杭州</div>
+        </div>
+        <div class="token-id">15234</div>
+      </div>
+
+      <div class="token punct">
+        <div class="token-card">
+          <div class="token-char">，</div>
+        </div>
+        <div class="token-id">8</div>
+      </div>
+
+      <div class="token">
+        <div class="token-card">
+          <div class="token-char">有</div>
+        </div>
+        <div class="token-id">301</div>
+      </div>
+
+      <div class="token yellow">
+        <div class="token-card">
+          <div class="token-char">什么</div>
+        </div>
+        <div class="token-id">4521</div>
+      </div>
+
+      <div class="token red">
+        <div class="token-card">
+          <div class="token-char">推荐</div>
+        </div>
+        <div class="token-id">9876</div>
+      </div>
+
+      <div class="token punct">
+        <div class="token-card">
+          <div class="token-char">？</div>
+        </div>
+        <div class="token-id">11</div>
+      </div>
+    </div>
+
+    <p class="footnote">每个 Token 都有一个唯一编号，叫 Token ID</p>
+
+  </div>
+
+  <div class="caption-bar">它先把你的话拆成一块一块的</div>
+  <div class="chapter-num">02 / Token</div>
+
+</body>
+</html>

@@ -25,7 +25,7 @@
 - **规则**: 第四色只替代红色位置，不替代蓝/黄主色
 
 ### 暗色面板色值
-- 标准暗底: `#151821`
+- 标准暗底: `#16252E`
 - 深色底: `#0d1117`
 - 品牌蓝底: `var(--blue)` + 白字
 - 品牌黄底: `var(--yellow)` + 墨色字
@@ -84,7 +84,7 @@ Landing页面高频使用的组件：
   gap: 8px;
   padding: 16px 36px;
   background: var(--blue, #2F6FB0);
-  color: #fff;
+  color: var(--cream);
   border-radius: 12px;
   text-decoration: none;
   font-weight: 600;
@@ -93,7 +93,7 @@ Landing页面高频使用的组件：
 }
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(43,127,216,0.3);
+  box-shadow: 0 8px 24px rgba(47,111,176,0.3);
 }
 
 /* 黄色变体（用于深色背景上） */

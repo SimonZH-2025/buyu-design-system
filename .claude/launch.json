@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "buyu-static", "runtimeExecutable": "node",
+      "runtimeArgs": [".claude/serve.js"], "port": 4599 }
+  ]
+}

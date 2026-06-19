@@ -65,10 +65,10 @@
 .number-card {
   position: relative;
   padding: 28px 24px;
-  background: #fff;
+  background: var(--cream);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 4px rgba(42,42,51,0.04);
 }
 .number-card .card-number {
   position: absolute;
@@ -77,7 +77,7 @@
   font-family: 'DM Serif Display', serif;
   font-size: 5.5rem;
   font-weight: 900;
-  color: rgba(43, 127, 216, 0.08);
+  color: rgba(47, 111, 176, 0.08);
   line-height: 1;
   pointer-events: none;
 }
@@ -98,7 +98,7 @@
 
 **变体**: 编号颜色按品牌三色轮换（蓝/黄/红）
 ```css
-.number-card:nth-child(3n+1) .card-number { color: rgba(43, 127, 216, 0.08); }
+.number-card:nth-child(3n+1) .card-number { color: rgba(47, 111, 176, 0.08); }
 .number-card:nth-child(3n+2) .card-number { color: rgba(244, 215, 88, 0.15); }
 .number-card:nth-child(3n) .card-number { color: rgba(232, 74, 95, 0.1); }
 ```
@@ -119,10 +119,10 @@
 
 ```css
 .tag-card {
-  background: #fff;
+  background: var(--cream);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 4px rgba(42,42,51,0.04);
 }
 .tag-card .card-pill {
   display: inline-block;
@@ -133,7 +133,7 @@
   margin-bottom: 14px;
 }
 /* pill颜色变体 */
-.tag-card .card-pill--blue { background: rgba(43,127,216,0.1); color: var(--blue); }
+.tag-card .card-pill--blue { background: rgba(47,111,176,0.1); color: var(--blue); }
 .tag-card .card-pill--yellow { background: rgba(244,215,88,0.25); color: #9a8100; }
 .tag-card .card-pill--red { background: rgba(232,74,95,0.1); color: var(--red); }
 .tag-card .card-title {
@@ -168,10 +168,10 @@
 .icon-card {
   display: flex;
   align-items: stretch;
-  background: #fff;
+  background: var(--cream);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 4px rgba(42,42,51,0.04);
   min-height: 130px;
 }
 .icon-card .card-icon-area {
@@ -182,7 +182,7 @@
   font-size: 2.8rem;
 }
 /* icon区颜色变体 */
-.icon-card .card-icon-area--blue { background: rgba(43,127,216,0.06); }
+.icon-card .card-icon-area--blue { background: rgba(47,111,176,0.06); }
 .icon-card .card-icon-area--yellow { background: rgba(244,215,88,0.12); }
 .icon-card .card-icon-area--red { background: rgba(232,74,95,0.06); }
 .icon-card .card-content {
@@ -271,7 +271,7 @@
   padding: 48px 32px 28px 72px;
   background: white;
   border-radius: 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.04);
+  box-shadow: 0 8px 40px rgba(42,42,51,0.04);
 }
 .quote-editorial::before {
   content: '\201C';
@@ -323,7 +323,7 @@
 .quote-handwrite {
   position: relative;
   padding: 28px 24px;
-  border: 2px dashed rgba(43,127,216,0.25);
+  border: 2px dashed rgba(47,111,176,0.25);
   border-radius: 12px;
   background: white;
 }
@@ -551,7 +551,7 @@
   padding: 24px 28px;
   background: white;
   border-radius: 10px;
-  border: 1.5px dashed rgba(43, 127, 216, 0.3);
+  border: 1.5px dashed rgba(47, 111, 176, 0.3);
 }
 .quote-note-tag {
   position: absolute;
@@ -687,7 +687,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 .code-macos {
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 48px rgba(42,42,51,0.15);
 }
 .code-macos .code-titlebar {
   background: #2d2d3a;
@@ -770,7 +770,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   margin: 0;
   padding: 16px 20px 16px 48px;
   background-image: repeating-linear-gradient(
-    transparent, transparent 31px, rgba(43,127,216,0.05) 31px, rgba(43,127,216,0.05) 32px
+    transparent, transparent 31px, rgba(47,111,176,0.05) 31px, rgba(47,111,176,0.05) 32px
   );
 }
 ```
@@ -849,7 +849,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   background: white;
   border-radius: 16px;
   padding: 32px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 3px rgba(42,42,51,0.04);
   position: relative;
 }
 .code-clean .code-corner-tag {
@@ -860,7 +860,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   font-size: 0.6rem;
   color: var(--ink-faint);
   padding: 2px 8px;
-  border: 1px solid rgba(0,0,0,0.08);
+  border: 1px solid rgba(42,42,51,0.08);
   border-radius: 4px;
 }
 .code-clean pre {
@@ -875,7 +875,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 .code-clean .str { color: var(--red); }
 .code-clean .cm { color: #94a3b8; }
 .code-clean .highlight-line {
-  background: rgba(43,127,216,0.06);
+  background: rgba(47,111,176,0.06);
   margin: 0 -32px;
   padding: 0 32px;
   border-left: 3px solid var(--blue);
@@ -996,9 +996,9 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 ---
 
-## 9. 导航栏（Fixed + Backdrop Blur）
+## 9. 导航栏（Fixed 固定顶栏）
 
-固定在顶部的毛玻璃导航。
+固定在顶部的实色导航。**不用毛玻璃**（backdrop-blur 属 brand-dna 禁忌）——用实色象牙白 + 单色发丝线。
 
 ```html
 <nav>
@@ -1016,15 +1016,14 @@ nav {
   top: 0; left: 0; right: 0;
   z-index: 100;
   padding: 1rem 2rem;
-  background: rgba(254,252,246,.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(26,26,26,.06);
+  background: var(--cream);
+  border-bottom: 1px solid rgba(42,42,51,.12);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 nav.scrolled {
-  box-shadow: 0 2px 20px rgba(0,0,0,.06);
+  box-shadow: 0 2px 20px rgba(42,42,51,.06);
 }
 .nav-links {
   display: flex;
@@ -1089,7 +1088,7 @@ nav.scrolled {
   background: white;
   border-radius: 20px;
   padding: 40px 24px 28px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 24px rgba(42,42,51,0.05);
   overflow: hidden;
 }
 .chair-number-card .chair-big-num {
@@ -1102,7 +1101,7 @@ nav.scrolled {
   line-height: 1;
   pointer-events: none;
 }
-.chair-number-card:nth-child(1) .chair-big-num { color: rgba(43,127,216,0.08); }
+.chair-number-card:nth-child(1) .chair-big-num { color: rgba(47,111,176,0.08); }
 .chair-number-card:nth-child(2) .chair-big-num { color: rgba(244,215,88,0.15); }
 .chair-number-card:nth-child(3) .chair-big-num { color: rgba(232,74,95,0.08); }
 .chair-number-card h3 {
@@ -1228,7 +1227,7 @@ nav.scrolled {
   position: relative;
   background: white;
 }
-.chair-dashed-card:nth-child(1) { border-color: rgba(43,127,216,0.3); }
+.chair-dashed-card:nth-child(1) { border-color: rgba(47,111,176,0.3); }
 .chair-dashed-card:nth-child(2) { border-color: rgba(244,215,88,0.5); }
 .chair-dashed-card:nth-child(3) { border-color: rgba(232,74,95,0.3); }
 .chair-dashed-card .chair-label {
@@ -1292,7 +1291,7 @@ nav.scrolled {
   position: relative;
   overflow: hidden;
 }
-.chair-gradient-card:nth-child(1) { background: linear-gradient(145deg, rgba(43,127,216,0.08), rgba(43,127,216,0.02)); }
+.chair-gradient-card:nth-child(1) { background: linear-gradient(145deg, rgba(47,111,176,0.08), rgba(47,111,176,0.02)); }
 .chair-gradient-card:nth-child(2) { background: linear-gradient(145deg, rgba(244,215,88,0.15), rgba(244,215,88,0.03)); }
 .chair-gradient-card:nth-child(3) { background: linear-gradient(145deg, rgba(232,74,95,0.08), rgba(232,74,95,0.02)); }
 .chair-gradient-card .chair-emoji {
@@ -1402,14 +1401,14 @@ nav.scrolled {
   padding: 24px 32px;
   background: var(--cream, #FFF8EF);
   border-radius: 14px;
-  border: 1px solid rgba(43, 127, 216, 0.1);
+  border: 1px solid rgba(47, 111, 176, 0.1);
 }
 .system-flow span {
   font-size: 0.9rem;
   padding: 6px 14px;
-  background: #fff;
+  background: var(--cream);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  box-shadow: 0 2px 8px rgba(42,42,51,.04);
 }
 .flow-arrow {
   color: var(--blue, #2F6FB0);
@@ -1467,7 +1466,7 @@ nav.scrolled {
   background: white;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 20px rgba(42,42,51,0.04);
 }
 .compare-header {
   display: flex;
@@ -1532,7 +1531,7 @@ Caveat字体标题 + 虚线边框，适合轻松/教程类内容。
   background: white;
   border-radius: 16px;
   padding: 32px;
-  border: 1.5px dashed rgba(0,0,0,0.12);
+  border: 1.5px dashed rgba(42,42,51,0.12);
 }
 .compare-handwrite .compare-annotation {
   position: absolute;
@@ -1568,7 +1567,7 @@ Caveat字体标题 + 虚线边框，适合轻松/教程类内容。
   color: var(--ink-light);
   line-height: 1.6;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
+  border-bottom: 1px solid rgba(42,42,51,0.04);
 }
 .compare-handwrite .compare-item--dont { text-decoration: line-through; opacity: 0.6; }
 ```
@@ -1599,7 +1598,7 @@ Caveat字体标题 + 虚线边框，适合轻松/教程类内容。
 .compare-table {
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 16px rgba(42,42,51,0.06);
 }
 .compare-table-header {
   display: grid;
@@ -1620,7 +1619,7 @@ Caveat字体标题 + 虚线边框，适合轻松/教程类内容。
   grid-template-columns: 1fr 80px 80px;
   padding: 14px 20px;
   background: white;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
+  border-bottom: 1px solid rgba(42,42,51,0.04);
   align-items: center;
 }
 .compare-table-row:last-child { border-bottom: none; }
@@ -1739,10 +1738,10 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 
 ```css
 .skill-card {
-  background: #fff;
+  background: var(--cream);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  box-shadow: 0 4px 20px rgba(42,42,51,.06);
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -1786,7 +1785,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
   align-items: center;
   justify-content: center;
   background: #0d1117;
-  color: #fff;
+  color: var(--cream);
   padding: clamp(60px, 8vh, 120px) 2rem;
 }
 .quote-inner {
@@ -1835,7 +1834,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 .ring {
   position: absolute;
   inset: -12px;
-  border: 2px dashed rgba(43,127,216,0.25);
+  border: 2px dashed rgba(47,111,176,0.25);
   border-radius: 50%;
   animation: heroSpin 20s linear infinite;
 }
@@ -1852,7 +1851,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
   border-radius: 20px;
   padding: 4px 12px;
   font-size: 0.7rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  box-shadow: 0 2px 12px rgba(42,42,51,.08);
   z-index: 3;
 }
 @keyframes heroSpin {
@@ -1885,17 +1884,17 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 12px;
-  background: rgba(0,0,0,.05);
+  background: rgba(42,42,51,.05);
   border: none;
   cursor: pointer;
   transition: all .2s;
 }
 .filter-tag.active {
-  color: #fff;
+  color: var(--cream);
   background: var(--blue, #2F6FB0);
 }
 .filter-tag:hover:not(.active) {
-  background: rgba(0,0,0,.1);
+  background: rgba(42,42,51,.1);
 }
 ```
 
@@ -1920,23 +1919,23 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 
 ```css
 .book-card {
-  background: #fff;
+  background: var(--cream);
   border-radius: 16px;
   padding: 28px 24px 22px;
-  box-shadow: 0 8px 40px rgba(0,0,0,.1);
+  box-shadow: 0 8px 40px rgba(42,42,51,.1);
   cursor: pointer;
   transition: transform .2s, box-shadow .2s;
 }
 .book-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 48px rgba(0,0,0,.14);
+  box-shadow: 0 12px 48px rgba(42,42,51,.14);
 }
 .category-badge {
   display: inline-block;
   padding: 3px 10px;
   border-radius: 12px;
   font-size: 0.7rem;
-  background: rgba(43,127,216,0.1);
+  background: rgba(47,111,176,0.1);
   color: var(--blue, #2F6FB0);
   margin-bottom: 0.75rem;
 }
@@ -1980,8 +1979,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
   inset: 0;
   z-index: 1000;
   overflow-y: auto;
-  background: rgba(0,0,0,.6);
-  backdrop-filter: blur(4px);
+  background: rgba(22,37,46,.72);
   display: none;
   padding: 5vh 0;
 }
@@ -1991,7 +1989,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
   top: 1.5rem; right: 1.5rem;
   width: 40px; height: 40px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2036,7 +2034,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 .cal-cell {
   aspect-ratio: 1;
   border-radius: 6px;
-  background: #fff;
+  background: var(--cream);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2069,7 +2067,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
   gap: 8px;
   padding: 14px 32px;
   background: var(--blue, #2F6FB0);
-  color: #fff;
+  color: var(--cream);
   border-radius: 12px;
   text-decoration: none;
   font-weight: 600;
@@ -2078,7 +2076,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 }
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(43,127,216,0.3);
+  box-shadow: 0 8px 24px rgba(47,111,176,0.3);
 }
 ```
 
@@ -2180,7 +2178,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
   gap: 16px;
   align-items: start;
   padding: 28px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(42,42,51,0.05);
 }
 .editorial-row:last-child { border-bottom: none; }
 .editorial-num {
@@ -2291,18 +2289,18 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
     grid-template-columns: 1fr;
     gap: 4px;
     padding: 12px 0 12px 16px;
-    border-left: 2px solid rgba(0,0,0,0.05);
+    border-left: 2px solid rgba(42,42,51,0.05);
   }
 }
 ```
 
 ---
 
-## 21. 机票/航班卡片（3种变体）
+## 23. 机票/航班卡片（3种变体）
 
 用于展示航班、交通等行程信息。三种风格适配不同场景。
 
-### §21A — 复古登机牌风
+### §23A — 复古登机牌风
 
 模拟真实纸质登机牌，撕裂边缘/穿孔线，monospace字体，vintage质感。适合旅行主题页面。
 
@@ -2468,7 +2466,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 
 ---
 
-### §21B — 杂志排版风
+### §23B — 杂志排版风
 
 大字号对比、editorial layout，留白多，时间数字特别大。适合强调时间感的行程展示。
 
@@ -2593,7 +2591,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 
 ---
 
-### §21C — 极简信息卡
+### §23C — 极简信息卡
 
 黑白为主+红色圆点点缀，信息紧凑。适合密集行程列表。
 
@@ -2713,11 +2711,11 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 
 ---
 
-## 22. 住宿/酒店卡片（3种变体）
+## 24. 住宿/酒店卡片（3种变体）
 
 用于展示酒店、民宿等住宿信息。三种风格适配不同场景。
 
-### §22A — 杂志排版风
+### §24A — 杂志排版风
 
 顶部粗黑线、大衬线酒店名、底部meta细线分隔、大量留白。适合高端酒店展示。
 
@@ -2803,7 +2801,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 
 ---
 
-### §22B — 明信片/邮票风
+### §24B — 明信片/邮票风
 
 邮戳装饰+手写字体+虚线边框。适合旅行日记风格页面。
 
@@ -2832,7 +2830,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
   padding: clamp(24px, 4vw, 40px);
   position: relative;
   overflow: hidden;
-  box-shadow: 2px 3px 12px rgba(0,0,0,0.06);
+  box-shadow: 2px 3px 12px rgba(42,42,51,0.06);
 }
 .hotel-postcard::before {
   content: '';
@@ -2887,7 +2885,7 @@ Hover时出现品牌色顶条（**单色，不用渐变**）。
 
 ---
 
-### §22C — 杂志格栅
+### §24C — 杂志格栅
 
 CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字高亮。适合信息密度高的行程总览。
 
@@ -2996,7 +2994,7 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
 
 ---
 
-## 21. 报纸多栏排版
+## 25. 报纸多栏排版
 
 适用场景：信息密度高的科普内容、长篇摘要、多角度并列信息展示。模拟传统报纸的多栏 + 分隔线 + 手写批注风格。
 
@@ -3035,8 +3033,8 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 900;
   text-align: center;
-  border-bottom: 3px solid #000;
-  border-top: 1px solid #000;
+  border-bottom: 3px solid var(--ink);
+  border-top: 1px solid var(--ink);
   padding: 12px 0;
   margin-bottom: clamp(20px, 3vh, 36px);
 }
@@ -3083,7 +3081,7 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
 
 ---
 
-## 22. 极简日式留白
+## 26. 极简日式留白
 
 适用场景：需要高级感、冥想感的封面或过渡页。大量留白 + 竖线 + 单个视觉焦点 + 极细字体。
 
@@ -3147,7 +3145,7 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
 
 ---
 
-## 23. 胶片/电影字幕风
+## 27. 胶片/电影字幕风
 
 适用场景：故事性内容、个人叙事、情感表达、品牌故事。模拟胶片颗粒质感 + 电影字幕式文字排列。
 
@@ -3220,7 +3218,7 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
 
 ---
 
-## 24. 全屏大片压字
+## 28. 全屏大片压字
 
 适用场景：视觉冲击力最大化的封面/Hero。全屏图片 + 底部渐变遮罩 + 大字压在图上。
 
@@ -3267,7 +3265,7 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
   font-family: 'Playfair Display', 'DM Serif Display', 'Noto Serif SC', serif;
   font-size: clamp(3rem, 9vw, 6rem);
   font-weight: 900;
-  color: #fff;
+  color: var(--cream);
   line-height: 1.05;
 }
 .mag-sub {
@@ -3288,7 +3286,7 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
 
 ---
 
-## 25. 打字机/终端风
+## 29. 打字机/终端风
 
 适用场景：技术向内容、代码展示、CLI演示、极客感叙事、markdown风格呈现。
 
@@ -3373,7 +3371,7 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
 
 ---
 
-## 26. 横向滑动卡片（Horizontal Scroll Cards）
+## 30. 横向滑动卡片（Horizontal Scroll Cards）
 
 适用场景：多个并列内容项（步骤、手法、功能点）需要逐一展示，不同时占版面。移动端友好。
 
@@ -3403,15 +3401,15 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
   padding: 20px 0; -webkit-overflow-scrolling: touch;
 }
 .hscroll-track::-webkit-scrollbar { height: 4px; }
-.hscroll-track::-webkit-scrollbar-thumb { background: var(--accent-light, #d4a06a); border-radius: 2px; }
+.hscroll-track::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 2px; }
 .hscroll-card {
   min-width: 340px; max-width: 380px; flex-shrink: 0; scroll-snap-align: center;
-  background: #fff; border-radius: 16px; padding: 32px 28px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06); position: relative;
+  background: var(--cream); border-radius: 16px; padding: 32px 28px;
+  box-shadow: 0 4px 20px rgba(42,42,51,0.06); position: relative;
 }
 .hscroll-card .hscroll-num {
   position: absolute; top: 16px; right: 20px; font-family: 'Caveat', cursive;
-  font-size: 2rem; color: var(--accent-light, #d4a06a); opacity: 0.4;
+  font-size: 2rem; color: var(--yellow); opacity: 0.4;
 }
 .hscroll-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
 .hscroll-card p { font-size: 0.82rem; color: var(--ink-light, #5a4f3f); line-height: 1.9; }
@@ -3426,7 +3424,7 @@ CSS Grid两栏布局、2px粗边框系统、酒店名跨列、日期蓝色大字
 
 ---
 
-## 27. Tab 切换面板（Tab Switcher）
+## 31. Tab 切换面板（Tab Switcher）
 
 适用场景：同一版面多个分类内容需要切换展示。适合手法对比、分类讲解、功能列表。
 
@@ -3469,20 +3467,20 @@ function switchTab(el, idx) {
 ```
 
 ```css
-.tab-bar { display: flex; gap: 0; margin-bottom: 2rem; border-bottom: 2px solid var(--accent-light, #d4a06a); }
+.tab-bar { display: flex; gap: 0; margin-bottom: 2rem; border-bottom: 2px solid var(--yellow); }
 .tab-item {
   padding: 10px 20px; font-size: 0.82rem; font-weight: 500; cursor: pointer;
   border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s;
   color: var(--ink-faint, #8a7e6d);
 }
-.tab-item.active { border-bottom-color: var(--accent, #8b4513); color: var(--ink, #2c2416); font-weight: 700; }
+.tab-item.active { border-bottom-color: var(--blue); color: var(--ink); font-weight: 700; }
 .tab-item:hover { color: var(--ink-light, #5a4f3f); }
 .tab-panels { position: relative; }
 .tab-panel { display: none; animation: tabFadeIn 0.3s; }
 .tab-panel.active { display: block; }
 .tab-panel h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
 .tab-panel p { font-size: 0.88rem; color: var(--ink-light, #5a4f3f); line-height: 2; max-width: 550px; }
-.tab-example { margin-top: 1rem; background: #fff; border-radius: 10px; padding: 16px 20px; font-size: 0.9rem; color: var(--accent, #8b4513); border-left: 3px solid var(--accent-light, #d4a06a); }
+.tab-example { margin-top: 1rem; background: var(--cream); border-radius: 10px; padding: 16px 20px; font-size: 0.9rem; color: var(--blue); border-left: 3px solid var(--yellow); }
 @keyframes tabFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 ```
 
@@ -3494,7 +3492,7 @@ function switchTab(el, idx) {
 
 ---
 
-## 28. 手风琴展开（Accordion）
+## 32. 手风琴展开（Accordion）
 
 适用场景：有序列内容需要逐项展开查看。适合步骤、问答、目录结构。
 
@@ -3540,8 +3538,8 @@ function toggleAccordion(header) {
 }
 .accordion-header:hover { padding-left: 8px; }
 .accordion-step {
-  width: 32px; height: 32px; border-radius: 50%; background: var(--accent, #8b4513);
-  color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 32px; height: 32px; border-radius: 50%; background: var(--blue);
+  color: var(--cream); font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .accordion-header h4 { font-size: 0.95rem; font-weight: 700; }
 .accordion-arrow { margin-left: auto; font-size: 0.8rem; color: var(--ink-faint, #8a7e6d); transition: transform 0.2s; }
@@ -3559,7 +3557,7 @@ function toggleAccordion(header) {
 
 ---
 
-## 29. 箭头轮播（Arrow Carousel）
+## 33. 箭头轮播（Arrow Carousel）
 
 适用场景：内容在固定区域内轮播，用箭头+圆点控制。适合居中展示、焦点突出的场景。
 
@@ -3609,13 +3607,13 @@ function moveSlide(dir) {
 .carousel-slide p { font-size: 0.85rem; color: var(--ink-light, #5a4f3f); line-height: 2; max-width: 450px; margin: 0 auto; }
 .carousel-arrows { display: flex; justify-content: center; gap: 16px; margin-top: 2rem; }
 .carousel-arrow {
-  width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--accent-light, #d4a06a);
-  background: transparent; cursor: pointer; font-size: 1rem; color: var(--accent, #8b4513); transition: all 0.2s;
+  width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--yellow);
+  background: transparent; cursor: pointer; font-size: 1rem; color: var(--blue); transition: all 0.2s;
 }
-.carousel-arrow:hover { background: var(--accent, #8b4513); color: #fff; }
+.carousel-arrow:hover { background: var(--blue); color: var(--cream); }
 .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 1rem; }
-.carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-light, #d4a06a); opacity: 0.4; transition: all 0.2s; }
-.carousel-dot.active { opacity: 1; transform: scale(1.3); background: var(--accent, #8b4513); }
+.carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); opacity: 0.4; transition: all 0.2s; }
+.carousel-dot.active { opacity: 1; transform: scale(1.3); background: var(--blue); }
 ```
 
 **使用原则**：
@@ -3626,7 +3624,7 @@ function moveSlide(dir) {
 
 ---
 
-## 30. 堆叠卡片（Stacked Cards）
+## 34. 堆叠卡片（Stacked Cards）
 
 适用场景：内容像一沓卡片堆叠，点击顶部飞走露出下一张。视觉趣味性强，适合教学、游戏化展示。
 
@@ -3676,8 +3674,8 @@ function flipStack() {
 ```css
 .stack-container { position: relative; width: 380px; height: 280px; perspective: 1000px; margin: 1.5rem auto; }
 .stack-card {
-  position: absolute; inset: 0; background: #fff; border-radius: 16px;
-  padding: 32px; box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  position: absolute; inset: 0; background: var(--cream); border-radius: 16px;
+  padding: 32px; box-shadow: 0 6px 24px rgba(42,42,51,0.08);
   transition: all 0.4s ease; cursor: pointer;
 }
 .stack-card:nth-child(1) { z-index: 4; transform: translateY(0) scale(1); }
@@ -3686,7 +3684,7 @@ function flipStack() {
 .stack-card:nth-child(4) { z-index: 1; transform: translateY(36px) scale(0.88); opacity: 0.4; }
 .stack-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
 .stack-card p { font-size: 0.82rem; color: var(--ink-light, #5a4f3f); line-height: 1.9; }
-.stack-tag { display: inline-block; background: var(--accent, #8b4513); color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 3px; margin-bottom: 10px; }
+.stack-tag { display: inline-block; background: var(--blue); color: var(--cream); font-size: 0.7rem; padding: 2px 8px; border-radius: 3px; margin-bottom: 10px; }
 .stack-hint { font-size: 0.75rem; color: var(--ink-faint, #8a7e6d); text-align: center; margin-top: 3.5rem; font-family: 'Caveat', cursive; }
 ```
 
@@ -3698,7 +3696,7 @@ function flipStack() {
 
 ---
 
-## 31. 翻转卡片（3D Flip Card）
+## 35. 翻转卡片（3D Flip Card）
 
 适用场景：正反两面信息展示——正面是核心句/名言/问题，背面是翻译/答案/解释。适合教学、名句展示、闪卡。
 
@@ -3729,11 +3727,11 @@ function flipStack() {
   border-radius: 20px; display: flex; flex-direction: column;
   justify-content: center; align-items: center; padding: 40px;
 }
-.flip-front { background: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+.flip-front { background: var(--cream); box-shadow: 0 8px 32px rgba(42,42,51,0.08); }
 .flip-front h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.6; text-align: center; }
 .flip-front .flip-hint { font-size: 0.75rem; color: var(--ink-faint, #8a7e6d); margin-top: 2rem; }
 .flip-back {
-  background: var(--accent, #8b4513); color: #fff;
+  background: var(--blue); color: var(--cream);
   transform: rotateY(180deg); text-align: center;
 }
 .flip-back h3 { font-size: 1rem; font-weight: 400; opacity: 0.8; margin-bottom: 1rem; }
@@ -3748,7 +3746,7 @@ function flipStack() {
 
 ---
 
-## 32. 悬停揭示卡片（Hover Reveal Card）
+## 36. 悬停揭示卡片（Hover Reveal Card）
 
 适用场景：核心内容常驻展示，翻译/注释/补充信息在悬停时覆盖显示。比翻转卡片更轻量，适合不需要完整翻面的场景。
 
@@ -3767,16 +3765,16 @@ function flipStack() {
 ```css
 .reveal-card {
   position: relative; width: 550px; max-width: 90vw;
-  text-align: center; padding: 48px 40px; background: #fff;
-  border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden;
+  text-align: center; padding: 48px 40px; background: var(--cream);
+  border-radius: 20px; box-shadow: 0 4px 20px rgba(42,42,51,0.05); overflow: hidden;
 }
 .reveal-text {
   font-size: clamp(2.5rem, 6vw, 3.5rem); line-height: 1.5;
-  color: var(--ink, #2c2416); position: relative; z-index: 2;
+  color: var(--ink); position: relative; z-index: 2;
 }
 .reveal-sub { font-size: 0.8rem; color: var(--ink-faint, #8a7e6d); margin-top: 0.5rem; letter-spacing: 0.1em; position: relative; z-index: 2; }
 .reveal-overlay {
-  position: absolute; inset: 0; background: var(--accent, #8b4513); color: #fff;
+  position: absolute; inset: 0; background: var(--blue); color: var(--cream);
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   padding: 40px; opacity: 0; transition: opacity 0.4s ease; z-index: 3; border-radius: 20px;
 }
@@ -3794,7 +3792,7 @@ function flipStack() {
 
 ---
 
-## 33. 暗底大字+按钮揭示（Dark Hero Reveal）
+## 37. 暗底大字+按钮揭示（Dark Hero Reveal）
 
 适用场景：深色背景突出核心名句/标语，超大装饰字做氛围，翻译/释义通过按钮主动触发显示。适合需要仪式感的展示。
 
@@ -3821,20 +3819,20 @@ function flipStack() {
 }
 .dark-reveal-content { position: relative; z-index: 1; text-align: center; max-width: 550px; }
 .dark-reveal-content h2 {
-  font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.6; color: #fff; margin-bottom: 2rem;
+  font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.6; color: var(--cream); margin-bottom: 2rem;
 }
-.dark-reveal-divider { width: 40px; height: 2px; background: var(--accent-light, #d4a06a); margin: 0 auto 2rem; }
+.dark-reveal-divider { width: 40px; height: 2px; background: var(--yellow); margin: 0 auto 2rem; }
 .dark-reveal-trans {
   font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 2;
   opacity: 0; transition: opacity 0.5s;
 }
 .dark-reveal-trans.show { opacity: 1; }
 .dark-reveal-btn {
-  margin-top: 2rem; padding: 8px 20px; border: 1px solid var(--accent-light, #d4a06a);
-  background: transparent; color: var(--accent-light, #d4a06a); border-radius: 20px;
+  margin-top: 2rem; padding: 8px 20px; border: 1px solid var(--yellow);
+  background: transparent; color: var(--yellow); border-radius: 20px;
   font-size: 0.78rem; cursor: pointer; transition: all 0.2s;
 }
-.dark-reveal-btn:hover { background: var(--accent-light, #d4a06a); color: #1a1510; }
+.dark-reveal-btn:hover { background: var(--yellow); color: #1a1510; }
 ```
 
 **使用原则**：
@@ -3845,7 +3843,7 @@ function flipStack() {
 
 ---
 
-## 34. 左右分栏问答（Split Q&A）
+## 38. 左右分栏问答（Split Q&A）
 
 适用场景：左侧放问题/任务列表，右侧放辅助信息（结构图、流程、提示）。适合课后练习、FAQ+Tips、任务+参考。
 
@@ -3880,19 +3878,19 @@ function flipStack() {
 .split-qa-left h2 { font-family: 'Noto Serif SC', serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1.5rem; }
 .split-qa-item { display: flex; gap: 14px; margin-bottom: 1.5rem; align-items: flex-start; }
 .split-qa-num {
-  width: 28px; height: 28px; border-radius: 50%; background: var(--accent, #8b4513);
-  color: #fff; font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+  width: 28px; height: 28px; border-radius: 50%; background: var(--blue);
+  color: var(--cream); font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
 }
 .split-qa-item p { font-size: 0.85rem; color: var(--ink-light, #5a4f3f); line-height: 1.8; }
 .split-qa-right {
-  background: #fff; border-radius: 16px; padding: 28px 24px;
+  background: var(--cream); border-radius: 16px; padding: 28px 24px;
   border: 1px solid rgba(139,69,19,0.1);
 }
-.split-qa-right h3 { font-size: 0.85rem; font-weight: 700; color: var(--accent, #8b4513); margin-bottom: 12px; }
+.split-qa-right h3 { font-size: 0.85rem; font-weight: 700; color: var(--blue); margin-bottom: 12px; }
 .split-qa-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 .split-qa-step { background: var(--cream-dark, #f0e9dc); padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; color: var(--ink-light, #5a4f3f); }
-.split-qa-arrow { font-size: 0.7rem; color: var(--accent-light, #d4a06a); }
+.split-qa-arrow { font-size: 0.7rem; color: var(--yellow); }
 @media (max-width: 768px) { .split-qa { grid-template-columns: 1fr; } }
 ```
 
@@ -3904,7 +3902,7 @@ function flipStack() {
 
 ---
 
-## 35. 编号卡片网格（Numbered Card Grid）
+## 39. 编号卡片网格（Numbered Card Grid）
 
 适用场景：多个并列任务/要点用卡片形式展示，编号作背景装饰。可设置单张横跨整行。
 
@@ -3928,15 +3926,15 @@ function flipStack() {
 ```css
 .numgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 600px; }
 .numgrid-card {
-  background: #fff; border-radius: 14px; padding: 24px 20px;
+  background: var(--cream); border-radius: 14px; padding: 24px 20px;
   position: relative; overflow: hidden; transition: transform 0.2s;
 }
 .numgrid-card:hover { transform: translateY(-3px); }
 .numgrid-card::before {
   content: attr(data-num); position: absolute; top: -8px; right: 12px;
-  font-family: 'Caveat', cursive; font-size: 3rem; color: var(--accent-light, #d4a06a); opacity: 0.2;
+  font-family: 'Caveat', cursive; font-size: 3rem; color: var(--yellow); opacity: 0.2;
 }
-.numgrid-card h4 { font-size: 0.82rem; font-weight: 700; margin-bottom: 6px; color: var(--accent, #8b4513); }
+.numgrid-card h4 { font-size: 0.82rem; font-weight: 700; margin-bottom: 6px; color: var(--blue); }
 .numgrid-card p { font-size: 0.78rem; color: var(--ink-light, #5a4f3f); line-height: 1.8; }
 .numgrid-card.full { grid-column: 1 / -1; }
 @media (max-width: 768px) { .numgrid { grid-template-columns: 1fr; } }
@@ -3950,7 +3948,7 @@ function flipStack() {
 
 ---
 
-## 36. 交互清单（Interactive Checklist）
+## 40. 交互清单（Interactive Checklist）
 
 适用场景：有序任务列表，可点击打勾。适合教学任务、待办清单、学习进度跟踪。
 
@@ -3982,12 +3980,12 @@ function flipStack() {
   border-bottom: 1px solid rgba(139,69,19,0.1);
 }
 .checklist-check {
-  width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--accent-light, #d4a06a);
+  width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--yellow);
   flex-shrink: 0; margin-top: 2px; cursor: pointer; transition: all 0.2s;
   display: flex; align-items: center; justify-content: center;
 }
-.checklist-check.checked { background: var(--accent, #8b4513); border-color: var(--accent, #8b4513); }
-.checklist-check.checked::after { content: '✓'; color: #fff; font-size: 0.7rem; }
+.checklist-check.checked { background: var(--blue); border-color: var(--blue); }
+.checklist-check.checked::after { content: '✓'; color: var(--cream); font-size: 0.7rem; }
 .checklist-content h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 2px; }
 .checklist-content p { font-size: 0.78rem; color: var(--ink-light, #5a4f3f); line-height: 1.7; }
 .checklist-tag { display: inline-block; font-size: 0.65rem; background: var(--cream-dark, #f0e9dc); color: var(--ink-faint, #8a7e6d); padding: 2px 8px; border-radius: 3px; margin-top: 4px; }
@@ -4001,7 +3999,7 @@ function flipStack() {
 
 ---
 
-## 37. 手写明信片（Handwritten Postcard）
+## 41. 手写明信片（Handwritten Postcard）
 
 适用场景：结尾页、寄语、课后总结。模拟手写卡片的温暖感，微歪旋转+虚线分隔+邮票装饰。
 
@@ -4023,14 +4021,14 @@ function flipStack() {
 
 ```css
 .postcard {
-  background: #fff; border-radius: 4px; padding: 48px 44px;
-  max-width: 520px; box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  background: var(--cream); border-radius: 4px; padding: 48px 44px;
+  max-width: 520px; box-shadow: 0 4px 24px rgba(42,42,51,0.06);
   border: 1px solid rgba(139,69,19,0.08); position: relative;
   transform: rotate(-0.5deg);
 }
 .postcard::before {
   content: ''; position: absolute; top: 20px; right: 20px;
-  width: 50px; height: 50px; border: 2px solid var(--accent-light, #d4a06a); opacity: 0.3;
+  width: 50px; height: 50px; border: 2px solid var(--yellow); opacity: 0.3;
 }
 .postcard-title {
   font-family: 'Ma Shan Zheng', cursive; font-size: 1.8rem;
@@ -4040,10 +4038,10 @@ function flipStack() {
   font-family: 'Caveat', cursive; font-size: 1.05rem; line-height: 2.8;
   color: var(--ink-light, #5a4f3f);
 }
-.postcard-num { color: var(--accent, #8b4513); font-weight: 700; }
-.postcard-divider { border: none; border-top: 1px dashed var(--accent-light, #d4a06a); margin: 1.5rem 0; }
+.postcard-num { color: var(--blue); font-weight: 700; }
+.postcard-divider { border: none; border-top: 1px dashed var(--yellow); margin: 1.5rem 0; }
 .postcard-footer { font-size: 0.8rem; color: var(--ink-faint, #8a7e6d); line-height: 2; }
-.postcard-footer strong { color: var(--accent, #8b4513); }
+.postcard-footer strong { color: var(--blue); }
 .postcard-stamp {
   position: absolute; bottom: -12px; right: 24px; font-family: 'Caveat', cursive;
   font-size: 0.75rem; color: var(--ink-faint, #8a7e6d); transform: rotate(2deg);
@@ -4059,7 +4057,7 @@ function flipStack() {
 
 ---
 
-## #38 点击弹窗详情（Click-to-Modal Detail）
+## #42 点击弹窗详情（Click-to-Modal Detail）
 
 **用途**：点击卡片/图片弹出大型Modal，展示详细信息+多图gallery+标签。适合作品集、建筑项目、案例展示。
 
@@ -4068,8 +4066,8 @@ function flipStack() {
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; max-width: 760px;">
   <div class="work-card" onclick="openModal(0)" style="border-radius: 14px; overflow: hidden; cursor: pointer; position: relative; aspect-ratio: 16/10;">
     <img src="[image-url]" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s;">
-    <div style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.15); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 12px; font-size: 0.6rem; color: #fff;">Click to explore →</div>
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 18px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: #fff;">
+    <div style="position: absolute; top: 12px; right: 12px; background: var(--red); padding: 4px 10px; border-radius: 12px; font-size: 0.6rem; color: var(--cream);">Click to explore →</div>
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 18px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: var(--cream);">
       <h3 style="font-size: 0.9rem; font-weight: 700;">Project Name</h3>
       <span style="font-size: 0.68rem; opacity: 0.8;">Year · Category</span>
     </div>
@@ -4078,7 +4076,7 @@ function flipStack() {
 
 <!-- Modal -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.88); align-items: center; justify-content: center; padding: 24px;">
-  <span onclick="closeModal()" style="position: fixed; top: 20px; right: 24px; font-size: 2rem; color: #fff; cursor: pointer; z-index: 1001;">&times;</span>
+  <span onclick="closeModal()" style="position: fixed; top: 20px; right: 24px; font-size: 2rem; color: var(--cream); cursor: pointer; z-index: 1001;">&times;</span>
   <div style="background: #F5F5F0; border-radius: 16px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto;" onclick="event.stopPropagation()">
     <img src="[hero-image]" style="width: 100%; aspect-ratio: 21/9; object-fit: cover; border-radius: 16px 16px 0 0;">
     <div style="padding: 28px 32px 32px;">
@@ -4091,7 +4089,7 @@ function flipStack() {
         <img src="[gallery-3]" style="...">
       </div>
       <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px;">
-        <span style="font-size: 0.65rem; background: #EFE8D8; color: #8B4513; padding: 4px 10px; border-radius: 4px; font-weight: 600;">Tag</span>
+        <span style="font-size: 0.65rem; background: #F5E9D6; color: #2F6FB0; padding: 4px 10px; border-radius: 4px; font-weight: 600;">Tag</span>
       </div>
     </div>
   </div>
@@ -4108,14 +4106,14 @@ function flipStack() {
 
 ---
 
-## #39 缩略图轨道+侧面板（Thumbnail Rail + Side Panel）
+## #43 缩略图轨道+侧面板（Thumbnail Rail + Side Panel）
 
 **用途**：左侧竖向缩略图、中间大图、右侧文字面板。类gallery app体验，适合建筑/摄影/作品展示。
 
 ```html
-<div style="display: flex; gap: 0; max-width: 850px; height: 420px; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.08);">
+<div style="display: flex; gap: 0; max-width: 850px; height: 420px; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 30px rgba(42,42,51,0.08);">
   <!-- Thumbnail rail -->
-  <div style="width: 100px; background: #2C2A26; display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; overflow-y: auto;">
+  <div style="width: 100px; background: var(--dark-panel); display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; overflow-y: auto;">
     <img src="[thumb-1]" style="width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; opacity: 1;" onclick="switchPanel(0)">
     <img src="[thumb-2]" style="width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; opacity: 0.5;" onclick="switchPanel(1)">
     <img src="[thumb-3]" style="...opacity: 0.5;" onclick="switchPanel(2)">
@@ -4126,7 +4124,7 @@ function flipStack() {
     <img src="[full-2]" style="...opacity: 0; transition: opacity 0.4s;">
   </div>
   <!-- Side panel -->
-  <div style="width: 280px; background: #fff; padding: 28px 20px; overflow-y: auto; flex-shrink: 0; border-left: 1px solid #EFE8D8;">
+  <div style="width: 280px; background: var(--cream); padding: 28px 20px; overflow-y: auto; flex-shrink: 0; border-left: 1px solid #F5E9D6;">
     <h3 style="font-size: 1rem; font-weight: 800;">Title</h3>
     <p style="font-size: 0.72rem; color: #B87333; font-weight: 600;">Year · Location</p>
     <p style="font-size: 0.78rem; color: #5A5650; line-height: 1.8;">Description text...</p>
@@ -4142,7 +4140,7 @@ function flipStack() {
 
 ---
 
-## #40 悬停翻转卡片（Hover Flip Cards）
+## #44 悬停翻转卡片（Hover Flip Cards）
 
 **用途**：鼠标悬停翻转，正面为图片，背面为深色文字介绍。适合作品集、人物介绍、产品展示。
 
@@ -4153,10 +4151,10 @@ function flipStack() {
       <!-- Front -->
       <div style="position: absolute; inset: 0; backface-visibility: hidden; border-radius: 12px; overflow: hidden;">
         <img src="[image]" style="width: 100%; height: 100%; object-fit: cover;">
-        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 12px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: #fff; font-size: 0.72rem; font-weight: 600;">Label</div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 12px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: var(--cream); font-size: 0.72rem; font-weight: 600;">Label</div>
       </div>
       <!-- Back -->
-      <div style="position: absolute; inset: 0; backface-visibility: hidden; transform: rotateY(180deg); background: #2C2A26; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center; color: #fff;">
+      <div style="position: absolute; inset: 0; backface-visibility: hidden; transform: rotateY(180deg); background: var(--dark-panel); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: center; color: var(--cream);">
         <h4 style="font-size: 0.85rem; font-weight: 700;">Title</h4>
         <span style="font-size: 0.68rem; color: #D4A574;">Year</span>
         <p style="font-size: 0.72rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-top: 8px;">Description</p>
@@ -4181,14 +4179,14 @@ function flipStack() {
 
 ---
 
-## #41 巨大引号居中（Giant Quote Centered）
+## #45 巨大引号居中（Giant Quote Centered）
 
 **用途**：结尾页/金句页。奶油底色+大字号引号居中，极简但有力。
 
 ```html
-<section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #EFE8D8; text-align: center; padding: 60px;">
+<section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #F5E9D6; text-align: center; padding: 60px;">
   <div>
-    <p style="font-family: 'Libre Baskerville', serif; font-style: italic; font-size: clamp(1.5rem, 3.5vw, 2.5rem); line-height: 1.8; max-width: 750px; color: #2C2A26;">"Quote text here."</p>
+    <p style="font-family: 'DM Serif Display', 'Noto Serif SC', serif; font-style: italic; font-size: clamp(1.5rem, 3.5vw, 2.5rem); line-height: 1.8; max-width: 750px; color: var(--dark-panel);">"Quote text here."</p>
     <p style="font-size: 0.75rem; color: #8E8880; margin-top: 24px; letter-spacing: 0.15em; text-transform: uppercase;">— Attribution</p>
   </div>
 </section>
@@ -4198,7 +4196,7 @@ function flipStack() {
 
 ---
 
-## #42 肖像分割+引号（Portrait Split Quote）
+## #46 肖像分割+引号（Portrait Split Quote）
 
 **用途**：结尾页。左侧人物肖像占45%，右侧引号+总结文字。
 
@@ -4208,7 +4206,7 @@ function flipStack() {
     <img src="[portrait]" style="width: 100%; height: 100%; object-fit: cover;">
   </div>
   <div style="width: 55%; padding: 60px 80px;">
-    <p style="font-family: 'Libre Baskerville', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.5rem); line-height: 2;">"Quote"</p>
+    <p style="font-family: 'DM Serif Display', 'Noto Serif SC', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.5rem); line-height: 2;">"Quote"</p>
     <p style="font-size: 0.72rem; color: #B87333; margin-top: 20px; font-weight: 600; letter-spacing: 0.1em;">ATTRIBUTION</p>
     <p style="font-size: 0.78rem; color: #8E8880; margin-top: 16px; line-height: 1.8;">Summary text.</p>
   </div>
@@ -4217,15 +4215,15 @@ function flipStack() {
 
 ---
 
-## #43 深色字幕式结尾（Dark Typographic Ending）
+## #47 深色字幕式结尾（Dark Typographic Ending）
 
 **用途**：深色全屏+巨大水印文字背景+居中引号，电影感结尾。
 
 ```html
-<section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #2C2A26; text-align: center; position: relative;">
+<section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--dark-panel); text-align: center; position: relative;">
   <div style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 800; color: rgba(212,165,116,0.08); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap;">WATERMARK</div>
   <div style="position: relative; max-width: 600px; padding: 40px;">
-    <p style="font-family: 'Libre Baskerville', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 2; color: rgba(255,255,255,0.85);">"Quote"</p>
+    <p style="font-family: 'DM Serif Display', 'Noto Serif SC', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 2; color: rgba(255,255,255,0.85);">"Quote"</p>
     <div style="width: 40px; height: 2px; background: #D4A574; margin: 24px auto;"></div>
     <p style="font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; text-transform: uppercase;">Attribution</p>
   </div>
@@ -4234,14 +4232,14 @@ function flipStack() {
 
 ---
 
-## #44 极简留白引号（Ultra-Minimal Quote）
+## #48 极简留白引号（Ultra-Minimal Quote）
 
 **用途**：纯白底+左对齐引号+巨大留白。最克制的结尾方式。
 
 ```html
 <section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #F5F5F0; padding: 60px;">
   <div style="max-width: 500px; text-align: left;">
-    <p style="font-family: 'Libre Baskerville', serif; font-size: 1.1rem; line-height: 2.2; color: #2C2A26;">"Quote text here."</p>
+    <p style="font-family: 'DM Serif Display', 'Noto Serif SC', serif; font-size: 1.1rem; line-height: 2.2; color: var(--dark-panel);">"Quote text here."</p>
     <div style="display: flex; align-items: center; gap: 12px; margin-top: 32px;">
       <div style="width: 32px; height: 1px; background: #D4A574;"></div>
       <span style="font-size: 0.68rem; color: #8E8880; letter-spacing: 0.12em; text-transform: uppercase;">Attribution</span>
@@ -4252,7 +4250,7 @@ function flipStack() {
 
 ---
 
-## #45 暗化肖像+居中引号（Portrait Overlay Quote）
+## #49 暗化肖像+居中引号（Portrait Overlay Quote）
 
 **用途**：结尾页。全铺人物照暗化+灰度处理，白色引号居中叠加。
 
@@ -4260,7 +4258,7 @@ function flipStack() {
 <section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; text-align: center;">
   <img src="[portrait]" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3) grayscale(0.3);">
   <div style="position: relative; z-index: 2; max-width: 600px; padding: 40px;">
-    <p style="font-family: 'Libre Baskerville', serif; font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.8rem); line-height: 2; color: #fff;">"Quote"</p>
+    <p style="font-family: 'DM Serif Display', 'Noto Serif SC', serif; font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.8rem); line-height: 2; color: var(--cream);">"Quote"</p>
     <div style="width: 40px; height: 2px; background: #D4A574; margin: 28px auto;"></div>
     <p style="font-size: 0.75rem; color: rgba(255,255,255,0.6); letter-spacing: 0.12em; text-transform: uppercase;">Attribution</p>
   </div>

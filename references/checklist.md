@@ -1,6 +1,7 @@
 # 质量检查清单
 
-> 做完设计后逐条对照。P0必须全过，否则打回修改。
+> 做完设计后逐条对照。P0 必须全过，否则打回修改。
+> 凡能量化的都给了**可测阈值**（标 📏）—— 不靠手感，直接量。
 
 ---
 
@@ -8,41 +9,41 @@
 
 任何一条不过就要改：
 
-- [ ] 品牌三色使用正确（黄60/红30/蓝10比例）
-- [ ] 没有使用禁忌清单里的任何元素（蓝紫渐变/glassmorphism/bounce动画/neon/居中病/**顶部底部彩色渐变条**）
-- [ ] 背景使用暖底（#FFF8EF或#F5E9D6），非纯黑纯白
-- [ ] 字体用了推荐字体池里的（DM Serif Display/Noto Serif SC/Caveat等）
-- [ ] 标题衬线+正文无衬线混搭
-- [ ] 有响应式（至少900px断点）
-- [ ] 截图发Twitter不会被说"又是AI做的"
-- [ ] 每个section布局形式不同
-- [ ] clamp()做fluid sizing
-- [ ] 没有使用任何HTML默认样式（默认blockquote、默认border-left引用、无样式ul/ol、默认table）——所有组件必须从components.md选用
-- [ ] **（图文卡片）每页内容吃满画布 ≥75%，无未设计的下方空白；没有用 flex 空 div 撑版**
+- [ ] 📏 品牌三色比例 ≈ 黄60/红30/蓝10；湖蓝面积 < 全屏 15%，且不当主色块
+- [ ] 📏 背景为 `var(--cream)` `#FFF8EF` 或 `var(--cream-dark)` `#F5E9D6`；全文无 `#fff` / `#ffffff` 纯白底
+- [ ] 📏 文字主色为 `var(--ink)` `#2A2A33`；全文无 `#000` / `#000000` 纯黑字
+- [ ] 📏 `:root` token 块与 `brand-dna.md` §1 完全一致（色值不得私改）
+- [ ] 没有禁忌清单里的任何元素（蓝紫渐变 / glassmorphism / bounce 动画 / neon / 居中病 / **顶/底彩色渐变条** / 渐变文字）
+- [ ] 标题衬线（Noto Serif SC）+ 正文无衬线（Noto Sans SC）混搭
+- [ ] 📏 装饰字体（DM Serif / Caveat）只出现在英文/数字上，未套任何中文
+- [ ] 📏 中文正文 `line-height ≥ 1.7`；带行内高亮的标题 `line-height ≥ 1.4`（含封面 h1）
+- [ ] 📏 多行高亮块带 `box-decoration-break: clone`
+- [ ] 📏 每个 section 布局形式互不相同（相邻两屏不得同构）
+- [ ] 📏 字号、间距全部走 `clamp()`；无写死 px 的响应式断裂
+- [ ] 至少一个 900px 断点；移动端是重排不是缩小
+- [ ] 无任何 HTML 默认样式（默认 blockquote / border-left 引用 / 无样式 ul·ol / 默认 table）——组件全部取自 `components.md`
+- [ ] **自检三问**全部通过（见 brand-dna §6）：不像 AI / 一眼是我的 / 没有「见过很多次」
+- [ ] **（图文卡片）** 每页内容吃满画布 ≥75%，无未设计的空白带；没用 `flex` 空 div 撑版
 
 ---
 
 ## P1（应过）
 
-尽量满足，提升品质：
-
-- [ ] 至少一个section有视觉惊喜（出血/3D/全宽色块/装饰突破）
-- [ ] 字号对比足够极端（大的>3rem，小的<0.85rem）
-- [ ] 有Scroll Reveal动效 + stagger延迟
-- [ ] 使用了大装饰数字或大透明英文做背景
-- [ ] 有品牌色条（border-left）或高亮标记
-- [ ] ::selection用黄色高亮
+- [ ] 📏 字号对比足够极端：最大标题 > 3rem，最小辅助文字 < 0.85rem，比值 ≥ 4×
+- [ ] 至少一个 section 有视觉惊喜（出血 / 全宽色块 / 装饰突破 / 大透明英文背景）
+- [ ] 有 Scroll Reveal 动效 + stagger 延迟
+- [ ] 有品牌色条（border-left 4px 暖黄）或高亮标记
+- [ ] 📏 `::selection { background: var(--yellow); }` 已设
+- [ ] 📏 阴影一律墨色 `rgba(42,42,51,…)`，无 `rgba(0,0,0,…)`
 
 ---
 
 ## P2（加分）
 
-锦上添花：
-
 - [ ] 图片溢出容器边界
-- [ ] 有全宽深色面板打破节奏
-- [ ] 装饰元素（虚线圆/渐变光晕/条纹肌理）使用克制
-- [ ] prefers-reduced-motion尊重
+- [ ] 有全宽深色面板（`var(--dark-panel)`）打破节奏（仅 HTML 全屏页）
+- [ ] 装饰元素（虚线圆 / 渐变光晕 / 条纹肌理）使用克制
+- [ ] `prefers-reduced-motion` 已尊重
 
 ---
 
@@ -58,7 +59,26 @@
 1. 填充 + 合理留白 = 100%（不能有欠填）
 2. 填充带覆盖 ≥75% 画布高度（≥1080px）
 3. **任何单条欠填 >216px（15%）即判失败**
-4. 相邻两条不能都是"合理留白"（会形成 >25% 的中部空洞）
+4. 相邻两条不能都是「合理留白」（会形成 >25% 的中部空洞）
 
-**失败怎么办**：不许缩画布、不许加装饰圆点。只能 ——
+**失败怎么办**：不许缩画布、不许加装饰圆点。只能——
 扩充内容（加账本行 / 加长段落 / 加证据行 / 加旁注栏），或**换版式**（内容太少就换成金句大字版）。
+
+---
+
+## ⚡ 快速量化扫描（交付前 30 秒）
+
+在浏览器 console 跑一遍，命中即不合格。**只查真正渲染出来的元素**（跳过 head/script 等结构节点和 0 尺寸元素，否则会把 `<html>` 的默认黑色误报）：
+
+```js
+(()=>{const bad=[];[...document.body.querySelectorAll('*')].forEach(el=>{
+  const s=getComputedStyle(el), r=el.getBoundingClientRect();
+  if((el.offsetParent===null&&s.position!=='fixed')||r.width===0||r.height===0) return; // 不可见跳过
+  if(/^rgb\(0, 0, 0\)$/.test(s.color))            bad.push(['纯黑字',el]);
+  if(/^rgb\(0, 0, 0\)$/.test(s.backgroundColor))  bad.push(['纯黑底',el]);
+  if(/^rgb\(255, 255, 255\)$/.test(s.backgroundColor)) bad.push(['纯白底',el]);
+  if(parseFloat(s.borderTopWidth)>0&&/rgb\(0, 0, 0\)/.test(s.borderTopColor)) bad.push(['纯黑边',el]);
+  if(/(purple|violet|indigo)/i.test(s.color+s.backgroundColor+s.backgroundImage)) bad.push(['蓝紫',el]);
+});console.table(bad.map(b=>b[0]));return bad.length+' 处违规';})()
+```
+返回 `0 处违规` = 通过。非 0 = 有真实渲染的纯黑/纯白/蓝紫，回去改。

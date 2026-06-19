@@ -138,7 +138,7 @@
   width: 44px; height: 44px;
   border-radius: 50%;
   background: var(--blue);
-  color: #fff;
+  color: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -178,7 +178,7 @@
   left: 50%;
   top: 0; bottom: 0;
   width: 2px;
-  background: rgba(43, 127, 216, 0.15);
+  background: rgba(42, 42, 51, 0.12);
 }
 .timeline-item {
   display: grid;
@@ -210,8 +210,8 @@
 
 ```css
 .dark-section {
-  background: #151821;
-  color: #e2e8f0;
+  background: var(--dark-panel);
+  color: var(--cream);
   padding: clamp(60px, 8vh, 120px) 0;
 }
 .dark-section .container {
@@ -272,7 +272,7 @@
   width: 56px; height: 56px;
   border-radius: 50%;
   background: var(--blue);
-  color: #fff;
+  color: var(--cream);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -309,10 +309,10 @@
   padding: 6rem 2rem 4rem;
 }
 .hero-card {
-  background: #fff;
+  background: var(--cream);
   border-radius: 24px;
   padding: clamp(2.5rem, 5vw, 4.5rem);
-  box-shadow: 0 4px 32px rgba(26,26,26,.08);
+  box-shadow: 0 8px 24px rgba(42,42,51,.10);
   max-width: 720px;
   width: 100%;
 }
@@ -400,7 +400,7 @@
 ```css
 .section-accent {
   background: var(--blue);
-  color: #fff;
+  color: var(--cream);
   padding: clamp(80px, 12vh, 160px) 0;
   position: relative;
   overflow: hidden;
@@ -448,10 +448,10 @@
 .timeline-card {
   flex: 0 0 300px;
   scroll-snap-align: start;
-  background: #fff;
+  background: var(--cream);
   border-radius: 16px;
   padding: clamp(24px, 3vw, 36px);
-  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  box-shadow: 0 2px 8px rgba(42,42,51,.06);
 }
 .timeline-card .year {
   font-family: 'DM Serif Display', serif;
@@ -584,7 +584,7 @@
 .canvas-area:active { cursor: grabbing; }
 .canvas-grid {
   width: 100%; height: 100%;
-  background-image: radial-gradient(circle, rgba(74,124,201,0.13) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(circle, rgba(47,111,176,0.13) 1.2px, transparent 1.2px);
   background-size: 28px 28px;
 }
 .canvas-transform {

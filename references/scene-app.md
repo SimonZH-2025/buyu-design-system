@@ -127,8 +127,7 @@ App型页面色彩更简洁：
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(0,0,0,.6);
-  backdrop-filter: blur(4px);
+  background: rgba(22,37,46,.72);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +146,7 @@ App型页面色彩更简洁：
 ### 卡片Hover
 ```css
 .app-card {
-  background: #fff;
+  background: var(--cream);
   border-radius: 12px;
   padding: 1.25rem;
   box-shadow: 0 2px 12px rgba(0,0,0,.04);
@@ -168,12 +167,12 @@ App型页面色彩更简洁：
   padding: 10px 14px;
   font-size: 0.9rem;
   transition: border-color .2s;
-  background: #fff;
+  background: var(--cream);
 }
 .app-input:focus {
   outline: none;
   border-color: var(--blue, #2F6FB0);
-  box-shadow: 0 0 0 3px rgba(43,127,216,0.1);
+  box-shadow: 0 0 0 3px rgba(47,111,176,0.1);
 }
 ```
 
@@ -187,7 +186,7 @@ App型页面色彩更简洁：
 ```css
 .canvas-grid {
   width: 100%; height: 100%;
-  background-image: radial-gradient(circle, rgba(74,124,201,0.13) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(circle, rgba(47,111,176,0.13) 1.2px, transparent 1.2px);
   background-size: 28px 28px;
 }
 ```
@@ -214,8 +213,8 @@ App型页面色彩更简洁：
 ### Canvas卡片（手绘感）
 ```css
 .canvas-card {
-  background: #fff;
-  border: 2px dashed rgba(74,124,201,0.35);
+  background: var(--cream);
+  border: 2px dashed rgba(47,111,176,0.35);
   border-radius: 16px;
   padding: 1.25rem;
   box-shadow: 0 4px 16px rgba(0,0,0,.06);

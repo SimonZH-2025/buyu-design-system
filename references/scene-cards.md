@@ -1,6 +1,6 @@
 # Scene: 小红书图文卡片（3:4）
 
-> 适用于将文章、教程、观点拆解为小红书图文卡片。单个HTML文件包含所有卡片，支持一键导出PNG。
+> 适用于将文章、教程、观点拆解为小红书图文卡片。单个HTML文件包含所有卡片，用 Playwright 脚本 100% 零失真导出 PNG。
 
 ---
 
@@ -17,7 +17,7 @@
 | 尺寸 | 1080×1440px（3:4） |
 | 最多张数 | 18张（小红书上限） |
 | 文件形式 | 所有卡片放一个HTML文件，每张一个 `div.card` |
-| 导出方式 | 顶部固定"一键导出PNG"按钮（html2canvas + JSZip 打包为 zip 一次性下载） |
+| 导出方式 | **Playwright 脚本**（`assets/export-png.mjs`，100% 还原浏览器渲染，零失真） |
 | 浏览器预览 | `transform: scale(0.45); transform-origin: top center; margin-bottom: -792px` |
 | 头像必须 base64 内嵌 | **不要用 `<img src="avatar.png">` 外链**——`file://` 直接打开时外链图会让画布被跨域污染、那张卡导不出（少图）。头像一律转成 `data:image/png;base64,...` 内嵌（模板 `template-cards.html` 已内置）。这样双击 HTML 也能导全，不依赖本地服务器 |
 | html2canvas / JSZip | 用 CDN 引入，避免本地文件缺失 |
@@ -39,9 +39,83 @@
 
 ## 📝 排版原则
 
-### 密度控制（核心：内容必须吃满画布）
+### ⭐ 间距层级（v2 修正 · 最高优先级）
 
-> 1080×1440 是固定高度，内容少时页面不会自己长满。**绝不能"内容堆上面、下面留空"**。
+> **「吃满」≠「拉开」。** 少量内容用 `flex:1` + `justify-content:space-between` 硬撑，会变成「行间空洞 + 主体顶到标题/底部」——**又散又挤，毫无设计感**（这是最常见的翻车点）。正确做法：**固定间距 + 内容垂直居中 + 块本身够厚**。
+
+**三段式骨架（套用模板的 `.sec-head` / `.sec-body` / `.sec-foot`）**
+
+```
+.card
+ ├─ .sec-head   ← 页眉：kicker + 标题，钉在顶部
+ ├─ .sec-body   ← 主体：flex:1，内容垂直居中，与上下有固定 margin
+ └─ .sec-foot   ← 结论条：.summary，钉在底部
+```
+
+**间距值（固定，不靠 space-between 产生）**
+
+| 间距 | 值 | 怎么实现 |
+|------|----|---------|
+| 标题区 → 主体 | **62px** | `.sec-body { margin-top:62px }` —— 必须有明确分隔，杜绝标题贴内容 |
+| 主体 · 卡片块间 | **30px** | `.vstack { gap:30px }`，卡片高度由内容定 |
+| 主体 · 账本行 | **32px/行 + 发丝线** | `.ledger2`，**禁止**用 space-between 把行拉散 |
+| 主体 → 结论条 | **54px + 顶部发丝线** | `.sec-body { margin-bottom:54px }` + `.summary` 的 `border-top` |
+
+**铁律**
+- 主体内容组在 `.sec-body` 里**垂直居中**，上下留**对称呼吸**——这是「设计过的留白」，不是欠填。
+- 内容撑不满时：**加大块的体量**（padding / 大编号 / 多一行说明 / 字号），**绝不是拉大间距**。
+- 「块与块」的间距，必须**明显小于**「标题→主体」「主体→结论」的间距，否则层次错乱（内容比标题还散）。
+- 块与块之间要有**清晰可辨的间隔**（≥24px 视觉间距 + 卡片各自的 padding / 发丝线），不许糊成一团。
+
+### 结论条（底部小结，必须用组件 `.summary`）
+
+底部小结**不准**用「普通正文 + 黄高亮」糊弄（旧版翻车点），也**不准**用卡通填充 pill 当标签（太重、像 banner）。统一用 `.summary`：
+- 顶部一条发丝线与主体分隔；
+- 标签 `.stag`（**方案 A · 纯字距**）：`Noto Sans SC` **500** + `letter-spacing:.34em` + 红色，**无填充、无方块、无 italic**（详见 `brand-dna.md` §中文小标签铁律）；
+- 结论句 `.stext`：**思源宋体 `Noto Serif SC` 600**（衬线、有编辑感）+ `text-wrap:pretty`，关键词加黄高亮块。
+- **结论文案 ≤ 一行最佳**；若两行，末行必须 ≥4 字（不许孤字，见 `brand-dna.md` §避孤字）。
+
+```html
+<div class="sec-foot">
+  <div class="summary">
+    <span class="stag">小结</span>
+    <span class="stext">根因只有一个——<span class="hl">模型每轮对话，都要把全部上下文从头读一遍</span>。</span>
+  </div>
+</div>
+```
+```css
+.summary .stag{ font-family:'Noto Sans SC'; font-weight:500; font-size:25px;
+  letter-spacing:.34em; color:var(--red); }   /* 纯字距，绝不 pill / italic / 700 */
+.summary .stext{ font-family:'Noto Serif SC'; font-weight:600; font-size:35px;
+  line-height:1.55; text-wrap:pretty; }
+```
+
+### 导出为 PNG（用 Playwright，100% 零失真）
+
+> **之前用 html2canvas 会失真**（不支持 `box-decoration-break` / `text-wrap` / `box-shadow`）。现在用真实 Chrome 引擎，100% 还原。
+
+**使用**（前提：装了 Playwright 和 Google Chrome）:
+```bash
+node ~/Documents/Github/neo-design-skill/assets/export-png.mjs \
+  ~/Documents/小红书图文/cc-进阶10招.html
+  
+# 输出: ~/Documents/小红书图文/export/card-01.png ~ card-08.png
+```
+
+参数化用法:
+```bash
+# 自定义输出目录
+node export-png.mjs ~/path/to/cards.html ~/path/to/output
+```
+
+**为什么不是"一键按钮"?** 
+- Playwright 在 Node.js 里跑（server side）,比浏览器 JS（html2canvas）快得多、更可靠
+- 导出脚本可复用、参数化,任何卡片 HTML 都能用
+- 一次导出 2x 高清（2160×2880），自动批量
+
+### 密度控制（核心：内容必须吃满画布 + 间距有节奏）
+
+> 1080×1440 是固定高度，内容少时页面不会自己长满。**绝不能"内容堆上面、下面留空"**。但补救手段是「加大块体量 / 换大字版」，**不是拉散间距**（见上方「间距层级」铁律）。
 
 **① 竖向五分区 + 高度预算**（每页按这个分配高度，不是随便堆）
 
@@ -98,10 +172,10 @@
 ## 🧩 卡片结构模板
 
 ### P1 封面
-- 大标题（84px）用思源宋体（Noto Serif SC），关键词用红色高亮块（`background: #D8453B; color: #fff; padding: 4px 16px; border-radius: 6px`）
+- 大标题（84px）用思源宋体（Noto Serif SC），关键词用红色高亮块（`background: #D8453B; color: var(--cream); padding: 4px 16px; border-radius: 6px`）
 - 副标题（44px）一行显示，紧跟标题下方，`white-space: nowrap`
 - 圆形头像（`avatar.png`，120px，`border: 4px solid #F2C53D`）
-- 署名「布鱼」44px + 介绍34px
+- 署名「Neo」44px + 介绍34px
 - 整体边框：`border: 28px solid #F2C53D`
 - 背景加浅色网格质感（`background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px); background-size: 40px 40px`）
 - 中间留白区域给用户放效果图/截图
@@ -113,8 +187,8 @@
 
 ### 最后一页 尾页
 - 金句（oversized引号装饰 `"` ，DM Serif Display 200px，opacity 0.15）
-- 圆形头像 + 署名「布鱼」
-- CTA：「关注 布鱼」
+- 圆形头像 + 署名「Neo」
+- CTA：「关注 Neo」
 - 一行小字 tagline（自定，如「用 AI 把事情做对」）
 - ❌ 不要加顶部/底部彩色渐变条（deco-top/deco-bottom）。要分隔用纯色块或单色发丝线
 
@@ -141,7 +215,7 @@
 
 - 所有颜色、字体、禁忌遵守 `brand-dna.md`
 - 头像文件：`assets/avatar.png`
-- 署名固定为：「布鱼」
+- 署名固定为：「Neo」
 - 品牌三色比例：黄6 : 红3 : 蓝1
 - 背景主色：奶白 `#FFF8EF` / 深奶 `#F5E9D6`，深色面板用 `#2A2A33`
 
@@ -154,7 +228,7 @@
 - [ ] 每页是否撑满画面（内容占满1080×1440，有呼吸感但不留大片空白）
 - [ ] 页面之间排版是否有变化（不能连续3页同一layout）
 - [ ] 品牌三色比例 6:3:1
-- [ ] 头像和署名是否正确（圆形头像+「布鱼」）
+- [ ] 头像和署名是否正确（圆形头像+「Neo」）
 - [ ] 导出按钮是否工作（html2canvas本地文件 + JSZip CDN、exportAll打包zip一次性下载）
 - [ ] 卡片是否居中显示（transform-origin: top center）
 - [ ] 用localhost打开测试导出（file://协议下js加载受限）

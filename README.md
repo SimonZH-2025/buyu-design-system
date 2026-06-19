@@ -1,4 +1,4 @@
-# buyu-design-system
+# neo-design-skill
 
 把"我的审美"写成一份 **AI 必须照着执行的规则集**，让任意 AI（Claude Code / Codex 等）产出风格统一、**不像 AI 套模板**的 HTML 页面与小红书图文卡片。
 
@@ -23,21 +23,22 @@
 ## 仓库结构
 
 ```
-buyu-design-system/
+neo-design-skill/
 ├── SKILL.md            # 工作流：AI 按什么步骤干活
-├── brand-dna.md        # 品牌基因（最高优先级）：配色 / 字体 / 气质 / 禁忌
+├── brand-dna.md        # 唯一 token 真源：颜色/字体/间距/阴影 token + CJK 排版 + Agent 快速参考
+├── gallery.html        # 视觉索引：四套模板的 live preview（改模板自动更新，开工前先挑场景）
 ├── references/
 │   ├── scene-cards.md      # 小红书卡片场景：竖向分区 + 占用率 + 欠填修复
 │   ├── scene-*.md          # 教程 / 活动 / App 场景规范
 │   ├── layouts.md          # 布局库
 │   ├── components.md       # 组件库（含代码，直接复制用）
-│   └── checklist.md        # 交付前自检（含 4 横带密度检查）
+│   └── checklist.md        # 交付前自检（量化阈值 + 4 横带密度 + console 扫描）
 └── assets/
     ├── template-cards.html # 卡片种子模板（自带"吃满画布"填充骨架）
     └── template-*.html     # 各场景起点模板
 ```
 
-读取顺序：`SKILL.md`（怎么做）→ `brand-dna.md` + 对应 `scene-*`（什么能用）→ 复制 `assets/template-*`（从模板改，不从零写）→ 跑 `checklist.md`。
+读取顺序：`gallery.html`（挑场景）→ `SKILL.md`（怎么做）→ `brand-dna.md` + 对应 `scene-*`（什么能用）→ 复制 `assets/template-*`（从模板改，不从零写）→ 跑 `checklist.md`。
 
 ---
 
@@ -66,4 +67,4 @@ buyu-design-system/
 
 结构与理念受 [Esther 不二的个人设计系统](https://github.com/esthersjw) 启发，并参考 [归藏 op7418](https://github.com/op7418) 的 PPT Design Skill。本仓库的品牌配置、填充骨架与规则为重新编写。
 
-Made by **布鱼**
+Made by **Neo**
